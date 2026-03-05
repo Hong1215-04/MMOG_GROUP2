@@ -1,21 +1,25 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerAbility : MonoBehaviour
+public abstract class PlayerAbility : UsableBehaviour
 {
     [SerializeField] Image uiElement;
     [SerializeField] KeyCode abilityKey;
     [SerializeField] float cooldown;
     [SerializeField] float fillDropSpeed = 5f;
+
     float cooldownTimer;
     bool isInCooldown;
     bool isDroppingFill;
 
-    private void Start()
+    float FillAmount => (float)currentUses / uses;
+
+    protected override void Start()
     {
+        base.Start();
         isInCooldown = false;
         isDroppingFill = false;
+
         if (uiElement != null)
         {
             uiElement.fillAmount = 1f;
@@ -23,12 +27,19 @@ public class PlayerAbility : MonoBehaviour
         }
     }
 
-    protected virtual void DoAbility()
+    protected abstract override void DoUse();
+    protected abstract bool CanPerform();
+
+    protected override void OnUsesCompleted()
     {
-        Debug.Log("DO ABILITY!!!");
+        StartCooldown();
+    }
+
+    protected void StartCooldown()
+    {
         isInCooldown = true;
-        isDroppingFill = true;
         cooldownTimer = 0f;
+        isDroppingFill = true;
     }
 
     void UpdateFill()
@@ -37,11 +48,11 @@ public class PlayerAbility : MonoBehaviour
 
         if (isDroppingFill)
         {
-            uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, 0f, Time.deltaTime * fillDropSpeed);
+            uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, FillAmount, Time.deltaTime * fillDropSpeed);
 
-            if (uiElement.fillAmount <= 0.15f)
+            if (Mathf.Abs(uiElement.fillAmount - FillAmount) <= 0.15f)
             {
-                uiElement.fillAmount = 0f;
+                uiElement.fillAmount = FillAmount;
                 isDroppingFill = false;
             }
         }
@@ -51,7 +62,7 @@ public class PlayerAbility : MonoBehaviour
         }
         else
         {
-            uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, 1f, Time.deltaTime * fillDropSpeed);
+            uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, FillAmount, Time.deltaTime * fillDropSpeed);
         }
     }
 
@@ -65,6 +76,7 @@ public class PlayerAbility : MonoBehaviour
                 {
                     isInCooldown = false;
                     cooldownTimer = cooldown;
+                    currentUses = uses; // Restore uses after cooldown
                 }
                 else
                 {
@@ -74,9 +86,9 @@ public class PlayerAbility : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(abilityKey))
+            if (Input.GetKeyDown(abilityKey) && CanPerform() && currentUses > 0)
             {
-                DoAbility();
+                ConsumeUse();
             }
         }
 
