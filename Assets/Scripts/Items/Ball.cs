@@ -5,6 +5,7 @@ public class Ball : Item
     protected override void DoUse()
     {
         Debug.Log("THROWW BALL");
+        ConsumeUse();
     }
 
     public override void OnPickUp()

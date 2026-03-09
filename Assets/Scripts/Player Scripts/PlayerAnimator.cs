@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// PlayerAnimator — Animation Driver
@@ -7,32 +8,23 @@
 /// No game logic lives here.
 ///
 /// CURRENT PARAMETERS (must exist in your Animator Controller):
-///   Bool : "InAir"     — true when not grounded (jumping, falling)
-///   Bool : "IsWalking" — true when grounded and moving horizontally
-///
-/// HOW TO ADD A NEW ABILITY ANIMATION:
-///   1. Add a Bool parameter to the Animator Controller.
-///   2. Uncomment or add: animator.SetBool("MyAbility", state.IsMyAbility);
-///   3. Wire the transition in the Animator. Done.
+///   Bool : "InAir"          — true when not grounded (jumping, falling)
+///   Bool : "IsWalking"      — true when grounded and moving horizontally
+///   Bool : "IsDoingSomething" — true while any ability is active
 /// </summary>
 [RequireComponent(typeof(PlayerState))]
 public class PlayerAnimator : MonoBehaviour
 {
-    // ─────────────────────────────────────────────
-    //  Animator parameter name constants
-    //  Change these if your parameter names differ
-    // ─────────────────────────────────────────────
     const string PARAM_IN_AIR = "InAir";
     const string PARAM_IS_WALKING = "IsWalking";
+    const string PARAM_IS_DOING_SOMETHING = "IsDoingSomething";
 
-    // ─────────────────────────────────────────────
     PlayerState state;
-    Animator animator;
+    public Animator animator;
 
     void Awake()
     {
         state = GetComponent<PlayerState>();
-        // Check this GameObject first, then children (covers both setups)
         animator = GetComponent<Animator>();
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
@@ -45,13 +37,48 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (animator == null) return;
 
-        // InAir — true whenever the player is not grounded
-        animator.SetBool(PARAM_IN_AIR, !state.IsGrounded);
-        // IsWalking — true when grounded and actively moving horizontally
-        animator.SetBool(PARAM_IS_WALKING, state.IsGrounded && Mathf.Abs(state.MoveInput) > 0.01f);
+        // While an ability owns the animator, only drive IsDoingSomething
+        // and leave the ability's trigger/state alone.
+        animator.SetBool(PARAM_IS_DOING_SOMETHING, state.IsDoingSomething);
 
-        // ── When you add Dash / Roll, uncomment these:
-        // animator.SetBool("IsDashing", state.IsDashing);
-        // animator.SetBool("IsRolling", state.IsRolling);
+        if (state.IsDoingSomething) return;
+
+        animator.SetBool(PARAM_IN_AIR, !state.IsGrounded);
+        animator.SetBool(PARAM_IS_WALKING, state.IsGrounded && Mathf.Abs(state.MoveInput) > 0.01f);
+    }
+
+    /// <summary>
+    /// Waits for the Animator to enter then finish a named state.
+    /// A timeout prevents OverrideMovement getting stuck permanently
+    /// if the trigger is missed or the state name doesn't match.
+    /// </summary>
+    public IEnumerator WaitForAnimationEnd(string stateName, System.Action onComplete, float timeout = 2f)
+    {
+        float elapsed = 0f;
+
+        // Wait up to timeout for the named state to become active.
+        // Using deltaTime accumulation instead of WaitForSeconds so we
+        // can also check the state name each frame.
+        yield return new WaitUntil(() =>
+        {
+            elapsed += Time.deltaTime;
+            return animator.GetCurrentAnimatorStateInfo(0).IsName(stateName)
+                   || elapsed >= timeout;
+        });
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+        {
+            // State is active — wait for it to reach the end
+            yield return new WaitUntil(() =>
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        }
+        else
+        {
+            Debug.LogWarning($"PlayerAnimator: Timed out waiting for state '{stateName}'. " +
+                             "Verify the name matches exactly in the Animator Controller " +
+                             "and that the transition has 'Has Exit Time' unchecked.");
+        }
+
+        onComplete?.Invoke();
     }
 }

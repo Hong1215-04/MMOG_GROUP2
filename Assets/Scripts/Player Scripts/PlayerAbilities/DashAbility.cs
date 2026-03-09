@@ -1,10 +1,37 @@
 using UnityEngine;
-public class DashAbility : PlayerAbility
+
+public class InstantDashAbility : PlayerAbility
 {
-    protected override bool CanPerform() => true;
+    [SerializeField] PlayerState state;
+    [SerializeField] PlayerAnimator playerAnimator;
+    [SerializeField] string dashAnimParam = "Dash";
+
+    [Header("Dash Settings")]
+    [SerializeField] float dashForce = 70f;
+
+    protected override bool CanPerform() => !state.IsDoingSomething;
 
     protected override void DoUse()
     {
-        Debug.Log("Dash!");
+        float dir = state.IsFacingRight ? 1f : -1f;
+
+        state.IsDoingSomething = true;
+        state.OverrideMovement = true;
+        state.SetHorizontalVelocity(dir * dashForce);
+        state.SetVerticalVelocity(0f);
+
+        playerAnimator.animator.SetTrigger(dashAnimParam);
+        StartRefill(uses - currentUses);
+        ConsumeUse();
+        StartCoroutine(playerAnimator.WaitForAnimationEnd("Dash", OnDashEnd));
+    }
+
+    void OnDashEnd()
+    {
+        state.SetHorizontalVelocity(0f);
+        state.IsDoingSomething = false;
+        state.OverrideMovement = false;
+
+
     }
 }

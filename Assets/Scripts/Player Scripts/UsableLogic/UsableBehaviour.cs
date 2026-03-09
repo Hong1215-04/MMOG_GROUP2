@@ -3,20 +3,23 @@ using UnityEngine;
 public abstract class UsableBehaviour : MonoBehaviour
 {
     [SerializeField] protected int uses = 1;
-    protected int currentUses;
+
+    // float so abilities can drain uses continuously over time (e.g. hold-to-dash)
+    protected float currentUses;
 
     protected virtual void Start()
     {
         currentUses = uses;
     }
 
-    public void ConsumeUse()
+    public void ConsumeUse(float used = 1f)
     {
-        currentUses--;
-        DoUse();
-
+        currentUses -= used;
         if (currentUses <= 0)
+        {
+            currentUses = 0;
             OnUsesCompleted();
+        }
     }
 
     protected abstract void DoUse();

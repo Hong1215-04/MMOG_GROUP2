@@ -89,6 +89,8 @@ public class PlayerState : MonoBehaviour
     public void SetHorizontalVelocity(float x) =>
         Velocity = new Vector2(x, Velocity.y);
 
+    public bool IsDoingSomething { get; set; }
+
     public void SetVerticalVelocity(float y) =>
         Velocity = new Vector2(Velocity.x, y);
 }
