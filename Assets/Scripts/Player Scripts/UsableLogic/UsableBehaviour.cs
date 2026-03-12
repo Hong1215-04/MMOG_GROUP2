@@ -22,6 +22,6 @@ public abstract class UsableBehaviour : MonoBehaviour
         }
     }
 
-    protected abstract void DoUse();
+    public abstract void DoUse();
     protected abstract void OnUsesCompleted();
 }

@@ -8,6 +8,8 @@ public abstract class Item : UsableBehaviour
     public bool canPickup = true;
     [SerializeField] protected Rigidbody2D rb;
 
+    protected void InvokeOnItemDestroyed() => OnItemDestroyed?.Invoke();
+
     protected override void OnUsesCompleted()
     {
         OnItemDestroyed?.Invoke();
@@ -15,6 +17,6 @@ public abstract class Item : UsableBehaviour
         Destroy(gameObject);
     }
 
-    protected abstract override void DoUse();
+    public abstract override void DoUse();
     public abstract void OnPickUp();
 }

@@ -41,7 +41,7 @@ public abstract class PlayerAbility : UsableBehaviour
         }
     }
 
-    protected abstract override void DoUse();
+    public abstract override void DoUse();
     protected abstract bool CanPerform();
 
     protected override void OnUsesCompleted()

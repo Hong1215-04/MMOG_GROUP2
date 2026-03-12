@@ -28,6 +28,24 @@ public class PlayerMovement : MonoBehaviour
     // ─────────────────────────────────────────────
     PlayerState state;
 
+    // Each active effect adds its multiplier to this list.
+    // Final speed = maxSpeed * all multipliers combined.
+    // Automatically returns to normal when all effects expire.
+    readonly System.Collections.Generic.List<float> speedMultipliers = new();
+
+    public float SpeedMultiplier
+    {
+        get
+        {
+            float result = 1f;
+            foreach (float m in speedMultipliers) result *= m;
+            return result;
+        }
+    }
+
+    public void AddSpeedMultiplier(float multiplier) => speedMultipliers.Add(multiplier);
+    public void RemoveSpeedMultiplier(float multiplier) => speedMultipliers.Remove(multiplier);
+
     void Awake() => state = GetComponent<PlayerState>();
 
     void Update()
@@ -84,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float accel = state.IsGrounded ? groundAcceleration : airAcceleration;
         float decel = state.IsGrounded ? groundDeceleration : airDeceleration;
-        float targetSpeed = state.MoveInput * maxSpeed;
+        float targetSpeed = state.MoveInput * maxSpeed * SpeedMultiplier;
         float currentX = state.Velocity.x;
         float newX;
 

@@ -11,7 +11,7 @@ public class InstantDashAbility : PlayerAbility
 
     protected override bool CanPerform() => !state.IsDoingSomething;
 
-    protected override void DoUse()
+    public override void DoUse()
     {
         float dir = state.IsFacingRight ? 1f : -1f;
 

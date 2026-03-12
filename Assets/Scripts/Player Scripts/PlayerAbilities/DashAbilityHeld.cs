@@ -20,7 +20,7 @@ public class DashAbilityHeld : PlayerAbility
     protected override bool CanPerform() => !state.IsDoingSomething && !isDashing;
 
     // Called by base on GetKeyDown — starts the dash
-    protected override void DoUse()
+    public override void DoUse()
     {
         isDashing = true;
 

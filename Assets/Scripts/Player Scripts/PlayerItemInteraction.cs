@@ -31,7 +31,7 @@ public class PlayerItemInteraction : MonoBehaviour
     {
         if (heldItem != null && Input.GetKeyDown(useItemKey))
         {
-            heldItem.ConsumeUse();
+            heldItem.DoUse();
         }
     }
 }
