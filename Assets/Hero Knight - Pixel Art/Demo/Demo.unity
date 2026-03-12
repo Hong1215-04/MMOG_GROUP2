@@ -1964,6 +1964,9 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 1563511877}
+  spriteRenderer: {fileID: 1916538460}
+  speedMultiplier: 3
+  duration: 2
 --- !u!850595691 &2127638298
 LightingSettings:
   m_ObjectHideFlags: 0
