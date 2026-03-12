@@ -30,6 +30,7 @@ public class Timer:MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        //Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
