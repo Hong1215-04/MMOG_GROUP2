@@ -2,9 +2,8 @@ using UnityEngine;
 
 public abstract class UsableBehaviour : MonoBehaviour
 {
-    [SerializeField] protected int uses = 1;
-
-    // float so abilities can drain uses continuously over time (e.g. hold-to-dash)
+    [SerializeField] protected float uses = 1;
+    [SerializeField] float useThreshold = 0.001f;   // add this
     protected float currentUses;
 
     protected virtual void Start()
@@ -15,7 +14,7 @@ public abstract class UsableBehaviour : MonoBehaviour
     public void ConsumeUse(float used = 1f)
     {
         currentUses -= used;
-        if (currentUses <= 0)
+        if (currentUses < useThreshold)
         {
             currentUses = 0;
             OnUsesCompleted();

@@ -57,13 +57,14 @@ public class DashAbilityHeld : PlayerAbility
     {
         float usesSpent = uses - Mathf.Max(0f, currentUses);
         currentUses = Mathf.Max(0, currentUses);
-
         isDashing = false;
-
         state.SetHorizontalVelocity(0f);
         state.IsDoingSomething = false;
         state.OverrideMovement = false;
 
-        StartRefill(usesSpent);
+        if (currentUses <= 0)
+            ConsumeUse();      // uses already 0 — triggers OnUsesCompleted → cooldown
+        else
+            StartRefill(usesSpent);  // partial use — auto refill if enabled
     }
 }

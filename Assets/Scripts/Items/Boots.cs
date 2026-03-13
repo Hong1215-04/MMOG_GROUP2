@@ -26,6 +26,7 @@ public class Boots : Item
         StartCoroutine(SpeedRoutine());
     }
 
+
     IEnumerator SpeedRoutine()
     {
         yield return new WaitForSeconds(duration);

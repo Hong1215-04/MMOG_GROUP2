@@ -13,14 +13,16 @@ public abstract class PlayerAbility : UsableBehaviour
     [SerializeField] bool autoRefill = false;
 
     [Tooltip("Seconds to wait after releasing before refill begins")]
-    [SerializeField] float refillDelay = 2f;
+    [SerializeField] float refillDelay = 0.5f;
 
     protected KeyCode AbilityKey => abilityKey;
 
     float cooldownTimer;
+    float cooldownDelayTimer;
+    bool isCooldownDelaying;
     float refillTimer;
     float refillDelayTimer;
-    float refillDuration;   // calculated from how much was used
+    float refillDuration;
     float usesAtRefillStart;
     bool isInCooldown;
     bool isDroppingFill;
@@ -52,6 +54,8 @@ public abstract class PlayerAbility : UsableBehaviour
     protected void StartCooldown()
     {
         isInCooldown = true;
+        isCooldownDelaying = true;
+        cooldownDelayTimer = 0f;
         cooldownTimer = 0f;
         isDroppingFill = true;
         isRefilling = false;
@@ -118,7 +122,6 @@ public abstract class PlayerAbility : UsableBehaviour
         {
             if (isDroppingFill)
             {
-                // Snap to empty quickly then hand off to cooldown fill
                 uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, 0f, Time.deltaTime * fillDropSpeed);
                 if (uiElement.fillAmount <= 0.01f)
                 {
@@ -126,9 +129,12 @@ public abstract class PlayerAbility : UsableBehaviour
                     isDroppingFill = false;
                 }
             }
+            else if (isCooldownDelaying)
+            {
+                uiElement.fillAmount = 0f;  // hold at empty during delay
+            }
             else
             {
-                // Fill bar tracks cooldown progress linearly
                 uiElement.fillAmount = cooldownTimer / cooldown;
             }
         }
@@ -147,7 +153,14 @@ public abstract class PlayerAbility : UsableBehaviour
     {
         if (isInCooldown)
         {
-            if (!isDroppingFill)
+            if (isDroppingFill) { /* wait for drop animation */ }
+            else if (isCooldownDelaying)
+            {
+                cooldownDelayTimer += Time.deltaTime;
+                if (cooldownDelayTimer >= refillDelay)
+                    isCooldownDelaying = false;
+            }
+            else
             {
                 if (cooldownTimer >= cooldown)
                 {
