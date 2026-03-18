@@ -22,6 +22,8 @@ public class PlayerJump : MonoBehaviour
     public float coyoteTime = 0.12f;
     public float jumpBufferTime = 0.15f;
 
+    public bool jumped = false;
+
     // ─────────────────────────────────────────────
     PlayerState state;
     float coyoteTimer;
@@ -58,6 +60,7 @@ public class PlayerJump : MonoBehaviour
 
     void DoJump()
     {
+        jumped = true;
         state.SetVerticalVelocity(jumpForce);
     }
 

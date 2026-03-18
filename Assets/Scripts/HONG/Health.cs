@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HealthText;
     [SerializeField] private int BaseHealthDef = 8000;
-    [SerializeField] private int LoseHP = 1000;
+    [SerializeField] private int LoseHP = 28;
 
     private int _currentHealth;
 
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             LoseLife();
         }
@@ -44,5 +44,13 @@ public class Health : MonoBehaviour
     public void ResetHealth()
     {
         _currentHealth = BaseHealthDef;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
+        {
+            LoseLife();
+        }
     }
 }
