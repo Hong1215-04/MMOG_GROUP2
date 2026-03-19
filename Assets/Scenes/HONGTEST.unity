@@ -361,7 +361,7 @@ MonoBehaviour:
   fillDropSpeed: 5
   autoRefill: 1
   refillDelay: 0.5
-  jumpMultiplyer: 1.5
+  jumpMultiplyer: 2.5
   playerjump: {fileID: 582930503}
 --- !u!114 &582930511
 MonoBehaviour:
@@ -378,6 +378,22 @@ MonoBehaviour:
   HealthText: {fileID: 930192244}
   BaseHealthDef: 8000
   LoseHP: 28
+--- !u!114 &582930512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582930494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af1a8a298de9874fbdb9eafd2b9d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackCollision
+  CollisionP1ATK: {fileID: 64971885}
+  StartupFrame: 0.5
+  ActiveFrame: 3
+  Endingframe: 1
 --- !u!1 &619163499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,6 +1386,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       insertIndex: -1
       addedObject: {fileID: 582930511}
+    - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 582930512}
   m_SourcePrefab: {fileID: 100100000, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
 --- !u!1 &1014334520
 GameObject:
