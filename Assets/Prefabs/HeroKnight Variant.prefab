@@ -262,12 +262,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   uses: 0.5
+  useThreshold: 0.001
   uiElement: {fileID: 0}
   abilityKey: 119
   cooldown: 5
   fillDropSpeed: 5
-  autoRefill: 1
-  refillDelay: 2
+  autoRefill: 0
+  refillDelay: 1
   state: {fileID: 2895701652164600197}
   playerAnimator: {fileID: 8850485198095796036}
   dashAnimParam: Dash
@@ -344,12 +345,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   uses: 1
+  useThreshold: 0.001
   uiElement: {fileID: 0}
   abilityKey: 101
-  cooldown: 0
+  cooldown: 5
   fillDropSpeed: 5
   autoRefill: 0
-  refillDelay: 2
+  refillDelay: 1
   state: {fileID: 2895701652164600197}
   playerAnimator: {fileID: 8850485198095796036}
   dashAnimParam: Dash
@@ -367,12 +369,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExampleAbility
   uses: 1
+  useThreshold: 0.001
   uiElement: {fileID: 0}
   abilityKey: 106
   cooldown: 10
   fillDropSpeed: 5
   autoRefill: 1
-  refillDelay: 5
+  refillDelay: 1
   duration: 5
   speedMultiplier: 1.75
   playerMovement: {fileID: 5675442331457989807}

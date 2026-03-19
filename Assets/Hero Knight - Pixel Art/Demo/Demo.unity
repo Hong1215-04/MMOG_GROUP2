@@ -3825,17 +3825,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4074405035574131659, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-      propertyPath: cooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074405035574131659, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 1698676954}
-    - target: {fileID: 4074405035574131659, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-      propertyPath: refillDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: m_Name
       value: HeroKnight
@@ -3884,22 +3876,10 @@ PrefabInstance:
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 919684155}
-    - target: {fileID: 7920474989998129007, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-      propertyPath: refillDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8780702989411554627, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 1750774819}
-    - target: {fileID: 8780702989411554627, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-      propertyPath: autoRefill
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8780702989411554627, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-      propertyPath: refillDelay
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
