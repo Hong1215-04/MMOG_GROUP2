@@ -17,7 +17,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Key Bindings")]
     public KeyCode keyJump = KeyCode.Space;
 
-    public bool CanJump = true;
+    bool CanJump = true;
 
     [Header("Jump")]
     public float jumpForce = 16f;
@@ -52,7 +52,7 @@ public class PlayerJump : MonoBehaviour
             coyoteTimer = coyoteTime;
 
         // Attempt jump
-        if (!state.OverrideMovement && jumpBufferTimer > 0f && coyoteTimer > 0f)
+        if (!state.OverrideMovement && jumpBufferTimer > 0f && coyoteTimer > 0f && CanJump)
         {
             DoJump();
             jumpBufferTimer = 0f;

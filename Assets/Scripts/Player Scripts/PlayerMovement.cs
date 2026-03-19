@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode keyLeft = KeyCode.A;
     public KeyCode keyRight = KeyCode.D;
 
-    public bool CanMove = true;
+    bool CanMove = true;
 
     [Header("Movement")]
     public float maxSpeed = 8f;
@@ -65,7 +65,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (state.OverrideMovement) return;
         //OverrideMovemennt might used for the others' movement function such as dash
-        ApplyHorizontalMovement();   
+        if (CanMove == true)
+        {
+            ApplyHorizontalMovement();
+        }  
     }
 
     // ─────────────────────────────────────────────
