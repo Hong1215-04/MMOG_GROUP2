@@ -140,6 +140,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7920474989998129007}
+    - targetCorrespondingSourceObject: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1004305038764495749}
   m_SourcePrefab: {fileID: 100100000, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
 --- !u!95 &3641858396961988674 stripped
 Animator:
@@ -193,6 +196,7 @@ MonoBehaviour:
   jumpForce: 8
   coyoteTime: 0.12
   jumpBufferTime: 0.15
+  jumped: 0
 --- !u!114 &5675442331457989807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,3 +383,25 @@ MonoBehaviour:
   duration: 5
   speedMultiplier: 1.75
   playerMovement: {fileID: 5675442331457989807}
+--- !u!114 &1004305038764495749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724866351667807461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fb207ee97827448a3b856bd1608f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighJumpSkill
+  uses: 1
+  useThreshold: 0.001
+  uiElement: {fileID: 0}
+  abilityKey: 107
+  cooldown: 8
+  fillDropSpeed: 5
+  autoRefill: 0
+  refillDelay: 0.5
+  jumpMultiplyer: 2.5
+  playerjump: {fileID: 6674051055819571019}
