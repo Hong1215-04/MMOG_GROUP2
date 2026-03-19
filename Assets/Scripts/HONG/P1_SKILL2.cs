@@ -26,6 +26,7 @@ public class HighJumpSkill : PlayerAbility
             {
                 playerjump.jumpForce = playerjump.jumpForce / jumpMultiplyer;
                 isJump = false;
+                playerjump.jumped = false;
                 ConsumeUse();
             }
         }

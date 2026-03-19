@@ -17,6 +17,8 @@ public class PlayerJump : MonoBehaviour
     [Header("Key Bindings")]
     public KeyCode keyJump = KeyCode.Space;
 
+    public bool CanJump = true;
+
     [Header("Jump")]
     public float jumpForce = 16f;
     public float coyoteTime = 0.12f;
@@ -60,8 +62,11 @@ public class PlayerJump : MonoBehaviour
 
     void DoJump()
     {
-        jumped = true;
-        state.SetVerticalVelocity(jumpForce);
+        if (CanJump == true)
+        {
+            jumped = true;
+            state.SetVerticalVelocity(jumpForce);
+        }
     }
 
     /// <summary>
