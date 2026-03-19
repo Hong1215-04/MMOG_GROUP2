@@ -6,30 +6,47 @@ public class HighJumpSkill : PlayerAbility
     [SerializeField] PlayerJump playerjump;
 
     bool isJump;
+    bool jumpMultiplierAdded;
 
     public override void DoUse()
+    { 
+        
+        playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer ;
+        ConsumeUse();
+        jumpMultiplierAdded = true;
+    }
+
+    private void OnEnable()
     {
-        isJump = true; 
-        playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer ;   
+        playerjump.onJumped += Jumped;
+    }
+
+    void Jumped() 
+    {
+        if (jumpMultiplierAdded)
+        {
+            playerjump.jumpForce = playerjump.jumpForce / jumpMultiplyer;
+            jumpMultiplierAdded = false;
+        }
     }
 
     protected override bool CanPerform()
     {
-        return !isJump;
+        return !jumpMultiplierAdded;
     }
 
     public override void Update()
     {
-        if (isJump == true)
-        {
-            if (playerjump.jumped == true)
-            {
-                playerjump.jumpForce = playerjump.jumpForce / jumpMultiplyer;
-                isJump = false;
-                playerjump.jumped = false;
-                ConsumeUse();
-            }
-        }
+        //if (isJump == true)
+        //{
+        //    if (playerjump.jumped == true)
+        //    {
+        //        playerjump.jumpForce = playerjump.jumpForce / jumpMultiplyer;
+        //        isJump = false;
+        //        playerjump.jumped = false;
+        //        ConsumeUse();
+        //    }
+        //}
      
         base.Update();
     }

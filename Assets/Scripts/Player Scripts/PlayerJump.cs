@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// PlayerJump — Jump Logic
@@ -16,7 +17,7 @@ public class PlayerJump : MonoBehaviour
 {
     [Header("Key Bindings")]
     public KeyCode keyJump = KeyCode.Space;
-
+    public Action onJumped;
     bool CanJump = true;
 
     [Header("Jump")]
@@ -60,10 +61,10 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    void DoJump()
+    public void DoJump()
     {
-         jumped = true;
          state.SetVerticalVelocity(jumpForce);
+         onJumped?.Invoke();
     }
 
     /// <summary>
