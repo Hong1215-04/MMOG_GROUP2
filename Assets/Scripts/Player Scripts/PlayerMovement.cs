@@ -65,10 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (state.OverrideMovement) return;
         //OverrideMovemennt might used for the others' movement function such as dash
-        if (CanMove == true)
-        {
-            ApplyHorizontalMovement();
-        }
+        ApplyHorizontalMovement();   
     }
 
     // ─────────────────────────────────────────────

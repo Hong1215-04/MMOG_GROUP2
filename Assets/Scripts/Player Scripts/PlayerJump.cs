@@ -62,11 +62,8 @@ public class PlayerJump : MonoBehaviour
 
     void DoJump()
     {
-        if (CanJump == true)
-        {
-            jumped = true;
-            state.SetVerticalVelocity(jumpForce);
-        }
+         jumped = true;
+         state.SetVerticalVelocity(jumpForce);
     }
 
     /// <summary>
