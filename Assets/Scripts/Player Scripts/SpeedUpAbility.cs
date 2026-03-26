@@ -25,7 +25,7 @@ public class SpeedUpAbility : PlayerAbility
 
     public override void Update()
     {
-        if (Time.time - usedTime > 5)
+        if (Time.time - usedTime > duration)
         {
             playerMovement.RemoveSpeedMultiplier(speedMultiplier);
             isSpeed = false;
