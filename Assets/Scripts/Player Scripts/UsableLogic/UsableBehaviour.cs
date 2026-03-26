@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class UsableBehaviour : MonoBehaviour
 {
     [SerializeField] protected float uses = 1;
-    [SerializeField] float useThreshold = 0.001f;   // add this
+    [SerializeField]  protected float useThreshold = 0.001f;   // add this
     protected float currentUses;
 
     protected virtual void Start()

@@ -21,8 +21,8 @@ public class InstantDashAbility : PlayerAbility
         state.SetVerticalVelocity(0f);
 
         playerAnimator.animator.SetTrigger(dashAnimParam);
-        StartRefill(uses - currentUses);
         ConsumeUse();
+        StartRefill(uses - currentUses);
         StartCoroutine(playerAnimator.WaitForAnimationEnd("Dash", OnDashEnd));
     }
 

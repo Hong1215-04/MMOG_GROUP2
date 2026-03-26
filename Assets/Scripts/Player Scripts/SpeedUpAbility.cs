@@ -11,10 +11,11 @@ public class SpeedUpAbility : PlayerAbility
 
     public override void DoUse()
     {
-       playerMovement.AddSpeedMultiplier(speedMultiplier);
-       usedTime = Time.time;
-       isSpeed = true;
-       ConsumeUse();
+        playerMovement.AddSpeedMultiplier(speedMultiplier);
+        usedTime = Time.time;
+        isSpeed = true;
+        ConsumeUse();
+        StartRefill(uses - currentUses);
     }
 
     protected override bool CanPerform()

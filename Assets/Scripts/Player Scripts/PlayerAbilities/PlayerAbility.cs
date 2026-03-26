@@ -4,16 +4,19 @@ using UnityEngine.UI;
 public abstract class PlayerAbility : UsableBehaviour
 {
     [SerializeField] Image uiElement;
+    IconEffects icons;
     [SerializeField] KeyCode abilityKey;
     [SerializeField] float cooldown;
     [SerializeField] float fillDropSpeed = 5f;
-
+    [SerializeField] bool playEffects = true;
     [Header("Auto Refill")]
     [Tooltip("Automatically refill uses when below max. Refill duration scales with how much was used.")]
     [SerializeField] bool autoRefill = false;
 
     [Tooltip("Seconds to wait after releasing before refill begins")]
     [SerializeField] float refillDelay = 0.5f;
+
+    
 
     protected KeyCode AbilityKey => abilityKey;
 
@@ -27,6 +30,7 @@ public abstract class PlayerAbility : UsableBehaviour
     bool isInCooldown;
     bool isDroppingFill;
     bool isRefilling;
+    float displayFill;   // smoothed value driving the UI — lerps toward the real FillAmount
 
     float FillAmount => currentUses / uses;
 
@@ -36,8 +40,13 @@ public abstract class PlayerAbility : UsableBehaviour
         isInCooldown = false;
         isDroppingFill = false;
         isRefilling = false;
+        displayFill = 1f;
         if (uiElement != null)
         {
+            if(uiElement.GetComponentInParent<IconEffects>() != null)
+            {
+                icons = uiElement.GetComponentInParent<IconEffects>();
+            }
             uiElement.fillAmount = 1f;
             uiElement.type = Image.Type.Filled;
         }
@@ -61,21 +70,18 @@ public abstract class PlayerAbility : UsableBehaviour
         isRefilling = false;
     }
 
-    /// <summary>
-    /// Call this when the ability finishes using so the refill can start.
-    /// usesSpent = how many uses were consumed this activation.
-    /// Refill duration = (usesSpent / maxUses) * cooldown
-    /// e.g. used 1.5 of 3, cooldown = 6 → refill takes 3s
-    /// </summary>
     protected void StartRefill(float usesSpent)
     {
         if (!autoRefill || isInCooldown) return;
+        if (isRefilling) return;   // already refilling — don't reset the timer
 
-        refillDuration = (usesSpent / uses) * cooldown;
+        refillDuration = (usesSpent / (float)uses) * cooldown;
         refillTimer = 0f;
         refillDelayTimer = 0f;
         usesAtRefillStart = currentUses;
         isRefilling = true;
+
+        Debug.Log($"StartRefill — usesSpent:{usesSpent} uses:{uses} cooldown:{cooldown} refillDuration:{refillDuration} usesAtStart:{usesAtRefillStart}");
     }
 
     protected virtual bool IsInUse() => false;
@@ -88,19 +94,20 @@ public abstract class PlayerAbility : UsableBehaviour
     {
         if (!isRefilling) return;
         if (isInCooldown) { isRefilling = false; return; }
-        if (IsInUse()) return;
 
-        // Wait for the delay before starting to refill
+        // Delay timer always ticks so it doesn't stack on top of IsInUse duration
         if (refillDelayTimer < refillDelay)
         {
             refillDelayTimer += Time.deltaTime;
             return;
         }
 
+        // Only block the actual refill while the ability is still running
+        if (IsInUse()) return;
+
         refillTimer += Time.deltaTime;
         float t = Mathf.Clamp01(refillTimer / refillDuration);
 
-        // Smoothly restore uses from where they were when refill started back to max
         currentUses = Mathf.Lerp(usesAtRefillStart, uses, t);
 
         if (t >= 1f)
@@ -118,30 +125,38 @@ public abstract class PlayerAbility : UsableBehaviour
     {
         if (uiElement == null) return;
 
+        float targetFill;
+
         if (isInCooldown)
         {
             if (isDroppingFill)
             {
-                uiElement.fillAmount = Mathf.Lerp(uiElement.fillAmount, 0f, Time.deltaTime * fillDropSpeed);
-                if (uiElement.fillAmount <= 0.01f)
-                {
-                    uiElement.fillAmount = 0f;
-                    isDroppingFill = false;
-                }
+                targetFill = 0f;
             }
             else if (isCooldownDelaying)
             {
-                uiElement.fillAmount = 0f;  // hold at empty during delay
+                targetFill = 0f;
             }
             else
             {
-                uiElement.fillAmount = cooldownTimer / cooldown;
+                // Direct assign for cooldown — it should feel like a clean linear fill
+                targetFill = cooldownTimer / cooldown;
             }
         }
         else
         {
-            // Always track FillAmount directly — covers draining and refilling smoothly
-            uiElement.fillAmount = FillAmount;
+            // Tracks currentUses — smooth for instant drops and gradual drains/refills
+            targetFill = FillAmount;
+        }
+
+        displayFill = Mathf.Lerp(displayFill, targetFill, Time.deltaTime * fillDropSpeed);
+        uiElement.fillAmount = displayFill;
+
+        // Once display reaches near zero during drop, snap and hand off
+        if (isDroppingFill && displayFill <= 0.01f)
+        {
+            displayFill = 0f;
+            isDroppingFill = false;
         }
     }
 
@@ -153,20 +168,28 @@ public abstract class PlayerAbility : UsableBehaviour
     {
         if (isInCooldown)
         {
-            if (isDroppingFill) { /* wait for drop animation */ }
+            if (isDroppingFill) { /* wait for drop animation to finish */ }
             else if (isCooldownDelaying)
             {
                 cooldownDelayTimer += Time.deltaTime;
                 if (cooldownDelayTimer >= refillDelay)
+                {
                     isCooldownDelaying = false;
+                    icons?.UpdateCooldownText(cooldown);
+                }
             }
             else
             {
+                float remaining = cooldown - cooldownTimer;
+                icons?.UpdateCooldownText(remaining);
+
                 if (cooldownTimer >= cooldown)
                 {
                     isInCooldown = false;
                     cooldownTimer = 0f;
                     currentUses = uses;
+                    icons?.HideCooldownText();
+                    icons?.OnAbilityRefilled();
                 }
                 else
                 {
@@ -177,7 +200,14 @@ public abstract class PlayerAbility : UsableBehaviour
         else
         {
             if (Input.GetKeyDown(abilityKey) && CanPerform() && currentUses > 0)
+            {
                 DoUse();
+                if(icons != null && playEffects)
+                {
+                    icons?.OnAbilityUsed(currentUses <= useThreshold);
+                }
+            }
+
         }
 
         HandleAutoRefill();
