@@ -25,7 +25,7 @@ public class PlayerJump : MonoBehaviour
     public float coyoteTime = 0.12f;
     public float jumpBufferTime = 0.15f;
 
-    public bool jumped = false;
+    //public bool jumped = false;
 
     // ─────────────────────────────────────────────
     PlayerState state;

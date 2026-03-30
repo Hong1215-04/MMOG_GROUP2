@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int BaseHealthDef = 8000;
     [SerializeField] private int LoseHP = 28;
 
-    private int _currentHealth;
+    private int _currentHealthDEF;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -20,37 +20,37 @@ public class Health : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoseLife();
+            LoseLifeDEF();
         }
-        HealthText.text = _currentHealth.ToString();
-        if (_currentHealth <= 0)
+        HealthText.text = _currentHealthDEF.ToString();
+        if (_currentHealthDEF <= 0)
         {
             //play anim if done
             UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
-    public void LoseLife()
+    public void LoseLifeDEF()
     {
         //testinguse
-        _currentHealth -= LoseHP;
+        _currentHealthDEF -= LoseHP;
 
-        if (_currentHealth <= 0)
+        if (_currentHealthDEF <= 0)
         {
-            _currentHealth = 0;
+            _currentHealthDEF = 0;
         }
     }
 
     public void ResetHealth()
     {
-        _currentHealth = BaseHealthDef;
+        _currentHealthDEF = BaseHealthDef;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
         {
-            LoseLife();
+            LoseLifeDEF();
         }
     }
 }

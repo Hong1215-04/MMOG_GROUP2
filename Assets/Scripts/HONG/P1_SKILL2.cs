@@ -5,7 +5,7 @@ public class HighJumpSkill : PlayerAbility
     [SerializeField] float jumpMultiplyer = 2f;
     [SerializeField] PlayerJump playerjump;
 
-    bool isJump;
+    //bool isJump;
     bool jumpMultiplierAdded;
 
     public override void DoUse()
