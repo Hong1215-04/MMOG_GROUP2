@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int BaseHealthDef = 8000;
     [SerializeField] private int LoseHP = 40;
     [SerializeField] PlayerMovement P1Movement;
+    [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb;
 
     private int _currentHealthDEF;
@@ -59,6 +60,7 @@ public class Health : MonoBehaviour
         {
             LoseLifeDEF();
             P1Movement.CannotMove();
+            P1Jump.CannotJump();
             StartCoroutine(BeingHit());
         }
     }
@@ -71,5 +73,6 @@ public class Health : MonoBehaviour
         //rb.linearVelocity = -lastdirection;
         yield return new WaitForSeconds(0.8f);
         P1Movement.CanMove();
+        P1Jump.CanJump();
     }
 }

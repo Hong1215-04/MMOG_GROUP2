@@ -1418,8 +1418,8 @@ GameObject:
   m_Component:
   - component: {fileID: 822568226}
   - component: {fileID: 822568227}
-  - component: {fileID: 822568229}
   - component: {fileID: 822568228}
+  - component: {fileID: 822568229}
   m_Layer: 10
   m_Name: P2_Collision
   m_TagString: Untagged
@@ -1473,13 +1473,16 @@ MonoBehaviour:
   HealthText: {fileID: 278782556}
   BaseHealthATK: 2000
   LoseHP: 15
---- !u!65 &822568229
-BoxCollider:
+--- !u!61 &822568229
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822568225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1488,12 +1491,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.7344811, z: 1}
-  m_Center: {x: 0, y: -0.36724055, z: 0}
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.36724114}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1.7344823}
+  m_EdgeRadius: 0
 --- !u!1 &930192242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1799,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1831785629}
+    - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1831785630}
   m_SourcePrefab: {fileID: 100100000, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
 --- !u!1 &1014334520
 GameObject:
@@ -2161,6 +2189,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
   m_PrefabInstance: {fileID: 978741238}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1831785622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5675442331457989807, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831785613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb409c7234920c48a8a49b188eeb1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &1831785623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6674051055819571019, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831785613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907904049003be46a8d6ef1bd7dcc01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
+--- !u!50 &1831785626 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7659464600502238672, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1831785629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,6 +2231,34 @@ MonoBehaviour:
   HealthText: {fileID: 930192244}
   BaseHealthDef: 8000
   LoseHP: 40
+  P1Movement: {fileID: 1831785622}
+  P1Jump: {fileID: 1831785623}
+  rb: {fileID: 1831785626}
+--- !u!114 &1831785630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831785613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cb91083a7a56143ac499ab57f4cfa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_Attack
+  CollisionP1ATK1: {fileID: 208253407}
+  CollisionP1ATK2: {fileID: 163790424}
+  CollisionP1ATK3: {fileID: 661888635}
+  InputFrameATK2: 4
+  StartupFrame1: 0.5
+  ActiveFrame1: 3
+  Endingframe1: 1
+  StartupFrame2: 0.5
+  ActiveFrame2: 3
+  Endingframe2: 1
+  StartupFrame3: 0.5
+  ActiveFrame3: 3
+  Endingframe3: 1
 --- !u!1 &1846771040
 GameObject:
   m_ObjectHideFlags: 0
