@@ -5,7 +5,7 @@ public class Health_P2 : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HealthText;
     [SerializeField] private int BaseHealthATK = 2000;
-    [SerializeField] private int LoseHP = 28;
+    [SerializeField] private int LoseHP = 15;
 
     private int _currentHealthATK;
 

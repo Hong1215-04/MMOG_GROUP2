@@ -22,7 +22,7 @@ public class P2Attack : MonoBehaviour
     {
         if (IsAttacking == false)
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 IsAttacking = true;
                 StartCoroutine(ActiveAtk());
