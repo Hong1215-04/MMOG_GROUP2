@@ -18,7 +18,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Key Bindings")]
     public KeyCode keyJump = KeyCode.Space;
     public Action onJumped;
-    bool CanJump = true;
+    bool Jump = true;
 
     [Header("Jump")]
     public float jumpForce = 16f;
@@ -36,6 +36,8 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        if (!Jump) return;
+
         // Always read input so JumpHeld is accurate for gravity in PlayerPhysics
         bool jumpPressed = Input.GetKeyDown(keyJump);
         state.JumpHeld = Input.GetKey(keyJump);
@@ -53,7 +55,7 @@ public class PlayerJump : MonoBehaviour
             coyoteTimer = coyoteTime;
 
         // Attempt jump
-        if (!state.OverrideMovement && jumpBufferTimer > 0f && coyoteTimer > 0f && CanJump)
+        if (!state.OverrideMovement && jumpBufferTimer > 0f && coyoteTimer > 0f)
         {
             DoJump();
             jumpBufferTimer = 0f;
@@ -73,5 +75,14 @@ public class PlayerJump : MonoBehaviour
     public void ForceJump(float? forceOverride = null)
     {
         state.SetVerticalVelocity(forceOverride ?? jumpForce);
+    }
+
+    public void CannotJump()
+    {
+        Jump = false;
+    }
+    public void CanJump()
+    {
+        Jump = true;
     }
 }
