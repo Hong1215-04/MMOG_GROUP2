@@ -12,8 +12,8 @@ public class Health : MonoBehaviour
     [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb;
 
-    private int _currentHealthDEF;
     Vector2 lastdirection;
+    private int _currentHealthDEF;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()

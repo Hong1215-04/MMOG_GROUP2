@@ -40,7 +40,7 @@ public class Player_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(InputTime);
+        //Debug.Log(InputTime);
 
         if (notFirstATK && !IsAttacking)
         {

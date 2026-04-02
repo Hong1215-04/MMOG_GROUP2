@@ -10,7 +10,6 @@ public class HighJumpSkill : PlayerAbility
 
     public override void DoUse()
     { 
-        
         playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer ;
         ConsumeUse();
         jumpMultiplierAdded = true;
