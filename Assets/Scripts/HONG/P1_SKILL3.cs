@@ -5,30 +5,52 @@ public class P1_SKILL3 : PlayerAbility
     [SerializeField] GameObject PlayerCollision;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float DashForce = 6f;
+    [SerializeField] PlayerState P1State;
+    [SerializeField] float duration = 1f;
 
-    bool DashUsed = false;
+    float usedtime;
+
+    //bool DashUsed = false;
+
+    protected override void Start()
+    {
+        base.Start(); // important!
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public override void Update()
     {
-
+        if (Time.time - usedtime > duration)
+        {
+            PlayerCollision.SetActive(true);
+        }
         base.Update();
     }
 
     public override void DoUse()
     {
         Debug.Log("GOT");
-        rb = GetComponent<Rigidbody2D>();
-        Vector2 playerdir;
-        playerdir = rb.linearVelocity;
-        float facedir = playerdir.normalized.x;
-        Vector2 Dashdir = new Vector2(facedir, 0);
-        rb.AddForce(Dashdir * DashForce, ForceMode2D.Impulse);
+        if (P1State.IsFacingRight == true)
+        {
+            usedtime = Time.time;
+            PlayerCollision.SetActive(false);
+            rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
+        }
+        else if (P1State.IsFacingRight == false)
+        {
+            usedtime = Time.time;
+            PlayerCollision.SetActive(false);
+            rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
+        }
+        //Vector2 playerdir;
+        //playerdir = rb.linearVelocity;
+        //float facedir = playerdir.normalized.x;
+        //Vector2 Dashdir = new Vector2(facedir, 0);
         ConsumeUse();
     }
 
     protected override bool CanPerform()
     {
-        //ConsumeUse();
-        throw new System.NotImplementedException();
+        return true;
     }
 }
