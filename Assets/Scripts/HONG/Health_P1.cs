@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using System;
 
 public class Health : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Health : MonoBehaviour
     [SerializeField] private int LoseHP = 40;
     [SerializeField] PlayerMovement P1Movement;
     [SerializeField] PlayerJump P1Jump;
-    [SerializeField] Rigidbody2D rb;
-
+    [SerializeField] Rigidbody2D rb ;
+    public Action OnDamageTaken;
     Vector2 lastdirection;
     private int _currentHealthDEF;
 
@@ -62,6 +63,7 @@ public class Health : MonoBehaviour
             P1Movement.CannotMove();
             P1Jump.CannotJump();
             StartCoroutine(BeingHit());
+            OnDamageTaken?.Invoke();
         }
     }
 

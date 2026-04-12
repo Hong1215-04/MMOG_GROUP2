@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerItemInteraction : MonoBehaviour
 {
     Item heldItem;
     [SerializeField] KeyCode useItemKey = KeyCode.C;
+    public Action OnItemPickup;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,6 +19,7 @@ public class PlayerItemInteraction : MonoBehaviour
             heldItem.canPickup = false;
             heldItem.OnItemDestroyed += OnHeldItemDestroyed;
             heldItem.OnPickUp();
+            OnItemPickup?.Invoke();
         }
     }
 
@@ -31,7 +34,7 @@ public class PlayerItemInteraction : MonoBehaviour
     {
         if (heldItem != null && Input.GetKeyDown(useItemKey))
         {
-            heldItem.DoUse();
+            heldItem.Use();
         }
     }
 }

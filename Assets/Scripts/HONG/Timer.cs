@@ -1,13 +1,30 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Timer:MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float Timeleft;
+    [SerializeField] float lowTime;
+    public Action OnTimeEntersLow, OnTimeExitsLow, OnTimeEnded;
+    bool isLow=false;
+
 
     void Update()
     {
+        if(Timeleft < lowTime && !isLow)
+        {
+            isLow = true;
+            OnTimeEntersLow?.Invoke();
+        }
+
+        if (Timeleft > lowTime && isLow) 
+        {
+            isLow = false;
+            OnTimeExitsLow?.Invoke();
+        }
+
         if (Timeleft > 0)
         {
             Timeleft -= Time.deltaTime;
@@ -20,6 +37,8 @@ public class Timer:MonoBehaviour
         {
             Timeleft = 0;
             timerText.color = Color.red;
+            OnTimeEnded?.Invoke();
+
         }
 
         int minutes = Mathf.FloorToInt(Timeleft / 60);

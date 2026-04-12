@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8901635973921351771}
   - component: {fileID: 5522845090143315692}
   - component: {fileID: 2041770398877345158}
+  - component: {fileID: 1858624972783775817}
+  - component: {fileID: 1041634096678776556}
   m_Layer: 5
   m_Name: Speed
   m_TagString: Untagged
@@ -95,6 +97,35 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &1858624972783775817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294824874559501825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6261f8c1bedfba342a74379ef1fb3120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAbilityFill
+  uiElement: {fileID: 653338509397157651}
+  ability: {fileID: 0}
+--- !u!114 &1041634096678776556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294824874559501825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c2e47fa84a441448a1c9cb98da8b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAbilityIconEffects
+  icons: {fileID: 5522845090143315692}
+  playEffects: 1
+  ability: {fileID: 0}
 --- !u!1 &1152633333079892477
 GameObject:
   m_ObjectHideFlags: 0
