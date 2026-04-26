@@ -3,15 +3,15 @@ using System.Collections;
 
 public class P2Skill1_SLOW : PlayerAbility
 {
-    [SerializeField] GameObject SlowDectection;
+    [SerializeField] Collider2D SlowDectection;
     [SerializeField] float StartupFrame1 = 0.2f;
-    [SerializeField] float ActiveFrame1 = 0.2f;
+    [SerializeField] float ActiveFrame1 = 3f;
     [SerializeField] float EndingFrame1 = 0.2f;
 
     protected override void Start()
     {
         base.Start(); // important!
-        SlowDectection.SetActive(false);
+        SlowDectection.enabled = false;
     }
 
     public override void DoUse()
@@ -27,9 +27,14 @@ public class P2Skill1_SLOW : PlayerAbility
     IEnumerator DetectionOut()
     {
         yield return new WaitForSeconds(StartupFrame1);
-        SlowDectection.SetActive(true);
+        SlowDectection.enabled = true;
         yield return new WaitForSeconds(ActiveFrame1);
-        SlowDectection.SetActive(false);
+        SlowDectection.enabled = false;
         yield return new WaitForSeconds(EndingFrame1);
+    }
+
+    public void skillhitted()
+    {
+        SlowDectection.enabled = false;
     }
 }

@@ -17,6 +17,7 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] float StartupFrame3 = 0.5f;
     [SerializeField] float ActiveFrame3 = 3.0f;
     [SerializeField] float Endingframe3 = 1.0f;
+    [SerializeField] KeyCode AttackKey;
     //[SerializeField] PlayerMovement P1Movement;
     // (use if player atk can't move)
 
@@ -56,7 +57,7 @@ public class Player_Attack : MonoBehaviour
 
         if (IsAttacking == false)
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(AttackKey))
             {
                 if (!notFirstATK)
                 {
@@ -117,6 +118,13 @@ public class Player_Attack : MonoBehaviour
     public void StopAllAtk()
     {
         StopAllCoroutines();
+    }
+
+    public void hitted()
+    {
+        CollisionP1ATK1.SetActive(false);
+        CollisionP1ATK2.SetActive(false);
+        CollisionP1ATK3.SetActive(false);
     }
 
     //COMBAT - 
