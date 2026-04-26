@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class P1_SKILL3 : PlayerAbility
 {
-    [SerializeField] GameObject PlayerCollision;
+    [SerializeField] Health health;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float DashForce = 6f;
     [SerializeField] PlayerState P1State;
@@ -22,7 +22,7 @@ public class P1_SKILL3 : PlayerAbility
     {
         if (Time.time - usedtime > duration)
         {
-            PlayerCollision.SetActive(true);
+            health.not_invincible();
         }
         base.Update();
     }
@@ -33,13 +33,13 @@ public class P1_SKILL3 : PlayerAbility
         if (P1State.IsFacingRight == true)
         {
             usedtime = Time.time;
-            PlayerCollision.SetActive(false);
+            health.set_invincible();
             rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
         }
         else if (P1State.IsFacingRight == false)
         {
             usedtime = Time.time;
-            PlayerCollision.SetActive(false);
+            health.set_invincible();
             rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
         }
         //Vector2 playerdir;

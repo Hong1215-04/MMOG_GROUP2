@@ -7,30 +7,34 @@ using System;
 public class Health : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HealthText;
-    [SerializeField] private int BaseHealthDef = 8000;
-    [SerializeField] private int LoseHP = 40;
+    [SerializeField] private float BaseHealthDef = 8000f;
+    //public float LoseHP = 40f;
     [SerializeField] PlayerMovement P1Movement;
     [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb ;
     public Action OnDamageTaken;
     Vector2 lastdirection;
-    private int _currentHealthDEF;
+    private float _currentHealthDEF;
+
+    bool invincible = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ResetHealth();
+        invincible = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoseLifeDEF();
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    LoseLifeDEF();
+        //}
         HealthText.text = _currentHealthDEF.ToString();
+
         if (_currentHealthDEF <= 0)
         {
             //play anim if done
@@ -39,10 +43,10 @@ public class Health : MonoBehaviour
         lastdirection = rb.linearVelocity;
     }
 
-    public void LoseLifeDEF()
+    public void LoseLifeDEF(float LoseHP)
     {
         //testinguse
-        _currentHealthDEF -= LoseHP;
+        _currentHealthDEF -= LoseHP / 2;
 
         if (_currentHealthDEF <= 0)
         {
@@ -59,11 +63,13 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
         {
-            LoseLifeDEF();
-            P1Movement.CannotMove();
-            P1Jump.CannotJump();
-            StartCoroutine(BeingHit());
-            OnDamageTaken?.Invoke();
+            if (invincible == false)
+            {
+                P1Movement.CannotMove();
+                P1Jump.CannotJump();
+                StartCoroutine(BeingHit());
+                OnDamageTaken?.Invoke();
+            }
         }
     }
 
@@ -76,5 +82,15 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         P1Movement.CanMove();
         P1Jump.CanJump();
+    }
+
+    public void set_invincible()
+    {
+        invincible = true;
+    }
+
+    public void not_invincible()
+    {
+        invincible = false;
     }
 }
