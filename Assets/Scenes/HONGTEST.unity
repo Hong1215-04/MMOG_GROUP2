@@ -335,6 +335,7 @@ MonoBehaviour:
   P2Movement: {fileID: 73718190}
   P2Jump: {fileID: 73718191}
   rb: {fileID: 73718194}
+  recovertime: 0.8
 --- !u!61 &73718200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -746,6 +747,10 @@ PrefabInstance:
     - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: AttackKey
       value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: InputFrameATK2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: CollisionP1ATK1
@@ -2054,6 +2059,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 930192244}
     - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: recovertime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: Player.m_Bits
       value: 512
       objectReference: {fileID: 0}
@@ -2148,6 +2157,10 @@ PrefabInstance:
     - target: {fileID: 7554452815399733747, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: m_Offset.y
       value: 0.66200006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659464600502238672, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2524518699333162258, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
