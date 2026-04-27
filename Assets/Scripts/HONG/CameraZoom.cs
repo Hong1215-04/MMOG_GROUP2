@@ -1,0 +1,38 @@
+using UnityEngine;
+
+public class CameraZoom : MonoBehaviour
+{
+    [SerializeField] private Camera selectedcam;
+    [SerializeField] GameObject Player1;
+    [SerializeField] GameObject Player2;
+    private float zoom;
+    private float smoothTime = 0.25f;
+    private float minzoom = 2f;
+    private float maxzoom = 10f;
+    private float velocity = 0f;
+    private float maxdistance = 40f;
+
+    Vector2 Player1Pos;
+    Vector2 Player2Pos;
+    float distance;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        zoom = selectedcam.orthographicSize;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Player1Pos = Player1.transform.position;
+        Player2Pos = Player2.transform.position;
+        distance = Vector2.Distance(Player1Pos, Player2Pos);
+
+        float zoomcontrol = Mathf.Clamp01(distance / maxdistance);
+        zoom = Mathf.Lerp(minzoom, maxzoom, zoomcontrol);
+
+        selectedcam.orthographicSize = Mathf.SmoothDamp(selectedcam.orthographicSize, zoom, ref velocity, smoothTime);
+
+    }
+}
