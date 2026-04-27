@@ -382,6 +382,32 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7261696, y: 1.1973679}
   m_EdgeRadius: 0
+--- !u!114 &73718201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73718181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7027d4f11f0a5c4fb786aa98b799e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P2_Skill3
+  uses: 1
+  useThreshold: 0.001
+  abilityKey: 262
+  cooldown: 3
+  fillDropSpeed: 5
+  autoRefill: 0
+  refillDelay: 0.5
+  Player1: {fileID: 1099979204}
+  EffectRange: 10
+  EffectDuration: 3
+  SlowSkillMultiplier: 0.8
+  P1Skill3: {fileID: 978741241}
+  P1Skill1: {fileID: 978741240}
+  P1Skill2: {fileID: 978741239}
 --- !u!114 &81193406 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2895701652164600197, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
@@ -867,6 +893,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       insertIndex: -1
       addedObject: {fileID: 73718200}
+    - targetCorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 73718201}
   m_SourcePrefab: {fileID: 100100000, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
 --- !u!1 &421136559
 GameObject:
@@ -2181,6 +2210,39 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1480538794}
   m_SourcePrefab: {fileID: 100100000, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+--- !u!114 &978741239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004305038764495749, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099979204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fb207ee97827448a3b856bd1608f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighJumpSkill
+--- !u!114 &978741240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7920474989998129007, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099979204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39d50d2ad4cce747988033b7d8a3f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExampleAbility
+--- !u!114 &978741241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6066635937418998757, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099979204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9917eb754f96041971e22cc8001e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P1_Skill3
 --- !u!1 &1014334520
 GameObject:
   m_ObjectHideFlags: 0
