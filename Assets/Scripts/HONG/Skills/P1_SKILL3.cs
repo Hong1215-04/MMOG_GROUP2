@@ -9,6 +9,7 @@ public class P1_SKILL3 : PlayerAbility
     [SerializeField] float duration = 1f;
 
     float usedtime;
+    public bool Silence;
 
     //bool DashUsed = false;
 
@@ -16,6 +17,7 @@ public class P1_SKILL3 : PlayerAbility
     {
         base.Start(); // important!
         rb = GetComponent<Rigidbody2D>();
+        Silence = false;
     }
 
     public override void Update()
@@ -29,24 +31,27 @@ public class P1_SKILL3 : PlayerAbility
 
     public override void DoUse()
     {
-        Debug.Log("GOT");
-        if (P1State.IsFacingRight == true)
+        if (!Silence)
         {
-            usedtime = Time.time;
-            health.set_invincible();
-            rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
-        }
-        else if (P1State.IsFacingRight == false)
-        {
-            usedtime = Time.time;
-            health.set_invincible();
-            rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
+            Debug.Log("GOT");
+            if (P1State.IsFacingRight == true)
+            {
+                usedtime = Time.time;
+                health.set_invincible();
+                rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
+            }
+            else if (P1State.IsFacingRight == false)
+            {
+                usedtime = Time.time;
+                health.set_invincible();
+                rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
+            }
+            ConsumeUse();
         }
         //Vector2 playerdir;
         //playerdir = rb.linearVelocity;
         //float facedir = playerdir.normalized.x;
         //Vector2 Dashdir = new Vector2(facedir, 0);
-        ConsumeUse();
     }
 
     protected override bool CanPerform()

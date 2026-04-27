@@ -8,14 +8,28 @@ public class SpeedUpAbility : PlayerAbility
     float usedTime;
 
     bool isSpeed;
+    public bool Silence;
+
+    protected override void Start()
+    {
+        base.Start(); // important!
+        Silence = false;
+    }
 
     public override void DoUse()
     {
-        playerMovement.AddSpeedMultiplier(speedMultiplier);
-        usedTime = Time.time;
-        isSpeed = true;
-        ConsumeUse();
-        StartRefill(uses - currentUses);
+        if (!Silence)
+        {
+            playerMovement.AddSpeedMultiplier(speedMultiplier);
+            usedTime = Time.time;
+            isSpeed = true;
+            ConsumeUse();
+            StartRefill(uses - currentUses);
+        }
+        if (Silence)
+        {
+            Debug.Log("GOTSIL");
+        }
     }
 
     protected override bool CanPerform()

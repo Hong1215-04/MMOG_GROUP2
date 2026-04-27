@@ -7,12 +7,22 @@ public class HighJumpSkill : PlayerAbility
 
     //bool isJump;
     bool jumpMultiplierAdded;
+    public bool Silence = false;
+
+    protected override void Start()
+    {
+        base.Start(); // important!
+        Silence = false;
+    }
 
     public override void DoUse()
     { 
-        playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer ;
-        ConsumeUse();
-        jumpMultiplierAdded = true;
+        if (!Silence)
+        {
+            playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer;
+            ConsumeUse();
+            jumpMultiplierAdded = true;
+        }
     }
 
     private void OnEnable()
