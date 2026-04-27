@@ -52,21 +52,34 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Read horizontal input — always update MoveInput so other scripts can see it
-        state.MoveInput = 0f;
-        if (Input.GetKey(keyRight)) state.MoveInput += 1f;
-        if (Input.GetKey(keyLeft)) state.MoveInput -= 1f;
+        if (!state.IsStunned)
+        {
+            state.MoveInput = 0f;
+            if (Input.GetKey(keyRight)) state.MoveInput += 1f;
+            if (Input.GetKey(keyLeft)) state.MoveInput -= 1f;
 
-        if (state.OverrideMovement) return;
-        UpdateFacing();
+            if (state.OverrideMovement) return;
+            UpdateFacing();
+        }
+
     }
 
     void FixedUpdate()
     {
-        if (state.OverrideMovement) return;
-        if (!Move) return;
-        //OverrideMovemennt might used for the others' movement function such as dash
-        ApplyHorizontalMovement(); 
+        if (state.IsStunned)
+        {
+            state.SetHorizontalVelocity(0f);
+            return;
+        }
+
+        if (!state.IsStunned)
+        {
+            if (state.OverrideMovement) return;
+            if (!Move) return;
+            //OverrideMovemennt might used for the others' movement function such as dash
+            ApplyHorizontalMovement();
+        }
+        
     }
 
     // ─────────────────────────────────────────────
