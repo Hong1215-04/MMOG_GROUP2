@@ -50,6 +50,7 @@ public class PlayerState : MonoBehaviour
     [Header("Ability State")]
     public bool IsDashing;
     public bool IsRolling;
+    public bool IsStunned;
     // Add more as needed:
     // public bool IsWallSliding;
     // public bool IsGliding;

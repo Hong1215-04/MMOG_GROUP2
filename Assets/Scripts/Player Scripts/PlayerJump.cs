@@ -36,6 +36,7 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        if(state.IsStunned) return;
         if (!Jump) return;
 
         // Always read input so JumpHeld is accurate for gravity in PlayerPhysics

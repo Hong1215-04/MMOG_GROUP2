@@ -23,6 +23,11 @@ public class PlayerItemInteraction : MonoBehaviour
         }
     }
 
+    public void SetHeldItem(Item item)
+    {
+        heldItem = item;
+    }
+
     void OnHeldItemDestroyed()
     {
         heldItem.OnItemDestroyed -= OnHeldItemDestroyed;
