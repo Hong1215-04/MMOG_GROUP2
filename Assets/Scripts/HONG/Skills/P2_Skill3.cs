@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class P2_Skill3 : MonoBehaviour
+public class P2_Skill3 : PlayerAbility
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject Player1;
+
+    bool CanCast;
+    public override void DoUse()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override bool CanPerform()
     {
-        
+        return true;
     }
+
+
 }

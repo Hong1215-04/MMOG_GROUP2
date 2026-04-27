@@ -12,8 +12,9 @@ public class Health : MonoBehaviour
     [SerializeField] PlayerMovement P1Movement;
     [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb ;
+    [SerializeField] float recovertime = 2f;
     public Action OnDamageTaken;
-    Vector2 lastdirection;
+    //Vector2 lastdirection;
     private float _currentHealthDEF;
 
     bool invincible = false;
@@ -40,7 +41,7 @@ public class Health : MonoBehaviour
             //play anim if done
             UnityEditor.EditorApplication.isPlaying = false;
         }
-        lastdirection = rb.linearVelocity;
+        //lastdirection = rb.linearVelocity;
     }
 
     public void LoseLifeDEF(float LoseHP)
@@ -70,10 +71,31 @@ public class Health : MonoBehaviour
         {
             if (invincible == false)
             {
+                //P1Movement.CannotMove();
+                //P1Jump.CannotJump();
+                //StartCoroutine(BeingHit());
+                OnDamageTaken?.Invoke();
+
                 P1Movement.CannotMove();
                 P1Jump.CannotJump();
-                StartCoroutine(BeingHit());
-                OnDamageTaken?.Invoke();
+
+                Vector2 enemyPos = other.transform.parent.position;
+                Vector2 playerPos = transform.position;
+
+                Vector2 direction = (playerPos - enemyPos).normalized;
+                float distance = Vector2.Distance(playerPos, enemyPos);
+
+                float maximumdis = 5.0f;
+                float normalizeddis = Mathf.Clamp01(distance / maximumdis);
+
+                float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
+
+                float force = Mathf.Lerp(5.5f, 12f, inverted);
+
+                //rb.linearVelocity = Vector2.zero;
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
+
+                StartCoroutine(RegainMove());
             }
         }
 
@@ -90,16 +112,42 @@ public class Health : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
         {
 
+            P1Movement.CannotMove();
+            P1Jump.CannotJump();
+
+            Vector2 enemyPos = other.transform.parent.position;
+            Vector2 playerPos = transform.position;
+
+            Vector2 direction = (playerPos - enemyPos).normalized;
+            float distance = Vector2.Distance(playerPos, enemyPos);
+
+            float maximumdis = 5.0f;
+            float normalizeddis = Mathf.Clamp01(distance / maximumdis);
+
+            float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
+
+            float force = Mathf.Lerp(5.5f, 12f, inverted);
+
+            rb.AddForce(direction * force, ForceMode2D.Impulse);
+
+            StartCoroutine(RegainMove());
         }
     }
 
-    IEnumerator BeingHit()
+    //IEnumerator BeingHit()
+    //{
+    //    Vector2 IncomingDir = lastdirection.normalized;
+    //    Vector2 Knockback = -IncomingDir;
+    //    rb.AddForce(Knockback * 6f, ForceMode2D.Impulse);
+    //    //rb.linearVelocity = -lastdirection;
+    //    yield return new WaitForSeconds(recovertime);
+    //    P1Movement.CanMove();
+    //    P1Jump.CanJump();
+    //}
+
+    IEnumerator RegainMove()
     {
-        Vector2 IncomingDir = lastdirection.normalized;
-        Vector2 Knockback = -IncomingDir;
-        rb.AddForce(Knockback * 6f, ForceMode2D.Impulse);
-        //rb.linearVelocity = -lastdirection;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(recovertime);
         P1Movement.CanMove();
         P1Jump.CanJump();
     }

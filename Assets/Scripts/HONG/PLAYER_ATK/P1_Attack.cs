@@ -82,6 +82,7 @@ public class Player_Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(StartupFrame1);
         CollisionP1ATK1.SetActive(true);
+        //Physics2D.SyncTransforms();
         yield return new WaitForSeconds(ActiveFrame1);
         CollisionP1ATK1.SetActive(false);
         yield return new WaitForSeconds(Endingframe1);
