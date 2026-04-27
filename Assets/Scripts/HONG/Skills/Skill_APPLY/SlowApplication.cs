@@ -21,7 +21,7 @@ public class SlowApplication : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Slowtime);
+        //Debug.Log(Slowtime);
         if (Slowing)
         {
             Slowtime += Time.deltaTime;

@@ -71,6 +71,21 @@ public class Health : MonoBehaviour
                 OnDamageTaken?.Invoke();
             }
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Taser"))
+        {
+            P1Movement.CannotMove();
+            P1Jump.CannotJump();
+            StartCoroutine(Tased());
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
+        {
+
+        }
     }
 
     IEnumerator BeingHit()
@@ -80,6 +95,14 @@ public class Health : MonoBehaviour
         rb.AddForce(Knockback * 6f, ForceMode2D.Impulse);
         //rb.linearVelocity = -lastdirection;
         yield return new WaitForSeconds(0.8f);
+        P1Movement.CanMove();
+        P1Jump.CanJump();
+    }
+
+    IEnumerator Tased()
+    {
+        rb.linearVelocity = Vector2.zero;   
+        yield return new WaitForSeconds(0.75f);
         P1Movement.CanMove();
         P1Jump.CanJump();
     }
