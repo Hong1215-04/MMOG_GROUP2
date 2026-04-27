@@ -1,40 +1,51 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Health_P2 : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HealthText;
-    [SerializeField] private int BaseHealthATK = 2000;
-    [SerializeField] private int LoseHP = 15;
+    [SerializeField] private float BaseHealthAtk = 2000f;
+    //public float LoseHP = 40f;
+    [SerializeField] PlayerMovement P2Movement;
+    [SerializeField] PlayerJump P2Jump;
+    [SerializeField] Rigidbody2D rb;
+    public Action OnDamageTaken;
+    Vector2 lastdirection;
+    private float _currentHealthATK;
 
-    private int _currentHealthATK;
+    //bool invincible = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         ResetHealth();
+        //invincible = false;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            LoseLifeATK();
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    LoseLifeDEF();
+        //}
         HealthText.text = _currentHealthATK.ToString();
+
         if (_currentHealthATK <= 0)
         {
             //play anim if done
             UnityEditor.EditorApplication.isPlaying = false;
         }
+        lastdirection = rb.linearVelocity;
     }
 
-    public void LoseLifeATK()
+    public void LoseLifeATK(float LoseHP)
     {
         //testinguse
-        _currentHealthATK -= LoseHP;
+        _currentHealthATK -= LoseHP / 2;
 
         if (_currentHealthATK <= 0)
         {
@@ -42,16 +53,68 @@ public class Health_P2 : MonoBehaviour
         }
     }
 
+    public void GainLifeATK(float LoseHP)
+    {
+        _currentHealthATK += LoseHP / 2;
+    }
+
     public void ResetHealth()
     {
-        _currentHealthATK = BaseHealthATK;
+        _currentHealthATK = BaseHealthAtk;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("P1_Damage"))
         {
-            LoseLifeATK();
+            P2Movement.CannotMove();
+            P2Jump.CannotJump();
+            StartCoroutine(BeingHit());
+            OnDamageTaken?.Invoke();
+        }
+
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Taser"))
+        //{
+        //    P2Movement.CannotMove();
+        //    P2Jump.CannotJump();
+        //    StartCoroutine(Tased());
+        //}
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("P1_Damage"))
+        {
+
         }
     }
+
+    IEnumerator BeingHit()
+    {
+        Vector2 IncomingDir = lastdirection.normalized;
+        Vector2 Knockback = -IncomingDir;
+        rb.AddForce(Knockback * 6f, ForceMode2D.Impulse);
+        //rb.linearVelocity = -lastdirection;
+        yield return new WaitForSeconds(0.8f);
+        P2Movement.CanMove();
+        P2Jump.CanJump();
+    }
+
+    //IEnumerator Tased()
+    //{
+    //    rb.linearVelocity = Vector2.zero;
+    //    yield return new WaitForSeconds(0.75f);
+    //    P2Movement.CanMove();
+    //    P2Jump.CanJump();
+    //}
+
+    //public void set_invincible()
+    //{
+    //    invincible = true;
+    //}
+
+    //public void not_invincible()
+    //{
+    //    invincible = false;
+    //}
 }

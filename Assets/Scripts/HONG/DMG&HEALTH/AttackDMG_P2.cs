@@ -3,7 +3,8 @@ using UnityEngine;
 public class AttackDMG_P2 : MonoBehaviour
 {
     public float ATKDMG = 40f;
-    [SerializeField] Health health;
+    [SerializeField] Health healthP1;
+    [SerializeField] Health_P2 healthP2;
     [SerializeField] Player_Attack attack;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +23,8 @@ public class AttackDMG_P2 : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
         {
-            health.LoseLifeDEF(ATKDMG);
+            healthP1.LoseLifeDEF(ATKDMG);
+            healthP2.GainLifeATK(ATKDMG);
             attack.hitted();
         }
     }

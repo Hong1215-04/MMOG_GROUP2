@@ -54,6 +54,11 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void GainLifeDEF(float LoseHP)
+    {
+        _currentHealthDEF += LoseHP / 2;
+    }
+
     public void ResetHealth()
     {
         _currentHealthDEF = BaseHealthDef;
