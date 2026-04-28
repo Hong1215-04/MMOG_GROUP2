@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] Rigidbody2D rb ;
     [SerializeField] float recovertime = 2f;
     public Action OnDamageTaken;
+    [SerializeField] LayerMask layer;
     //Vector2 lastdirection;
     private float _currentHealthDEF;
 
@@ -67,7 +68,7 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
+        if (other.gameObject.layer == layer)
         {
             if (invincible == false)
             {
@@ -109,9 +110,8 @@ public class Health : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("P2_Damage"))
+        if (other.gameObject.layer == layer)
         {
-
             P1Movement.CannotMove();
             P1Jump.CannotJump();
 

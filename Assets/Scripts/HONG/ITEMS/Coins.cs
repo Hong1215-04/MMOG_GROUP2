@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class Coins : Item
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] SpriteRenderer spriteRenderer;
+
+    public override void DoUse()
     {
-        
+        Debug.Log("Got");
+        //if (player.GetComponent<PlayerState>())
+        //{
+
+        //}
+        //else
+        //{
+
+        //}
+        ConsumeUse();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnPickUp()
     {
-        
+        rb.simulated = false;
+        spriteRenderer.enabled = false;
+        transform.SetParent(player.transform);
+        transform.localPosition = Vector3.zero;
     }
 }
