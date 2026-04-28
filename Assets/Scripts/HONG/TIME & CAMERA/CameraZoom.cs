@@ -7,7 +7,7 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] GameObject Player2;
     private float zoom;
     private float smoothTime = 0.25f;
-    private float minzoom = 2f;
+    private float minzoom = 3f;
     private float maxzoom = 10f;
     private float velocity = 0f;
     private float maxdistance = 40f;
