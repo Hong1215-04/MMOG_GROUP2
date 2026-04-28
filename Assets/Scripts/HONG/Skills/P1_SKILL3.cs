@@ -7,6 +7,7 @@ public class P1_SKILL3 : PlayerAbility
     [SerializeField] float DashForce = 6f;
     [SerializeField] PlayerState P1State;
     [SerializeField] float duration = 1f;
+    [SerializeField] GameObject P1Collison;
 
     float usedtime;
     public bool Silence;
@@ -17,6 +18,7 @@ public class P1_SKILL3 : PlayerAbility
     {
         base.Start(); // important!
         rb = GetComponent<Rigidbody2D>();
+        P1Collison.SetActive(true);
         Silence = false;
     }
 
@@ -25,6 +27,7 @@ public class P1_SKILL3 : PlayerAbility
         if (Time.time - usedtime > duration)
         {
             health.not_invincible();
+            P1Collison.SetActive(true);
         }
         base.Update();
     }
@@ -38,12 +41,14 @@ public class P1_SKILL3 : PlayerAbility
             {
                 usedtime = Time.time;
                 health.set_invincible();
+                P1Collison.SetActive(false);
                 rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
             }
             else if (P1State.IsFacingRight == false)
             {
                 usedtime = Time.time;
                 health.set_invincible();
+                P1Collison.SetActive(false);
                 rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
             }
             ConsumeUse();

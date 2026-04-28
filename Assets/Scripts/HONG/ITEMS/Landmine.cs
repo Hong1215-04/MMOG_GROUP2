@@ -1,16 +1,37 @@
+using System.Collections;
 using UnityEngine;
 
-public class Landmine : MonoBehaviour
+public class Landmine : Item
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] SpriteRenderer LandSprite;
+    [SerializeField] GameObject MineTrigger;
+
+    protected override void Start()
     {
-        
+        MineTrigger.SetActive(false);
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void DoUse()
     {
-        
+        transform.SetParent(null);
+        rb.simulated = true;
+
+        LandSprite.enabled = true;
+        MineTrigger.SetActive(true);
+    }
+
+    public override void OnPickUp()
+    {
+        rb.simulated = false;
+        LandSprite.enabled = false;
+
+        transform.SetParent(player.transform);
+        transform.localPosition = Vector3.zero;
+    }
+    public void MineTriggered()
+    {
+        MineTrigger.SetActive(false);
+        ConsumeUse();
     }
 }

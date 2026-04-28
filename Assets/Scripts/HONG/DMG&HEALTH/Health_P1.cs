@@ -17,8 +17,9 @@ public class Health : MonoBehaviour
     [SerializeField] LayerMask layer;
     //Vector2 lastdirection;
     private float _currentHealthDEF;
+    public bool IsAttacker;
 
-    bool invincible = false;
+    public bool invincible = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()

@@ -3,19 +3,27 @@ using UnityEngine;
 public class Coins : Item
 {
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float CoinPlusHealth;
+
+    private float DEFCoinHealth;
+    private float ATKCoinHealth;
+    private Health playerhealth;
 
     public override void DoUse()
     {
-        Debug.Log("Got");
-        //if (player.GetComponent<PlayerState>())
-        //{
-
-        //}
-        //else
-        //{
-
-        //}
-        ConsumeUse();
+        playerhealth = player.GetComponent<Health>();
+        if (playerhealth.IsAttacker)
+        {
+            ATKCoinHealth = CoinPlusHealth * 2f;
+            playerhealth.GainLifeDEF(ATKCoinHealth);
+            ConsumeUse();
+        }
+        else if (!playerhealth.IsAttacker)
+        {
+            DEFCoinHealth = CoinPlusHealth * 1.5f;
+            playerhealth.GainLifeDEF(DEFCoinHealth);
+            ConsumeUse();
+        }
     }
 
     public override void OnPickUp()
