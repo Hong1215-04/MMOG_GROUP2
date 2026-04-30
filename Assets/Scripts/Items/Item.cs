@@ -21,7 +21,10 @@ public abstract class Item : UsableBehaviour
     public void Use()
     {
         OnItemUse?.Invoke();
-        DoUse();
+        if (currentUses > 0)
+        {
+            DoUse();
+        }
     }
 
     public abstract override void DoUse();

@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   stunTimer: 3
+  stunPlayer: 1

@@ -1,17 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-/// <summary>
-/// PlayerJump — Jump Logic
-///
-/// Owns its own jump key binding.
-/// Sole responsibilities:
-///   - Read jump input and write state.JumpHeld
-///   - Track coyote time and jump buffer
-///   - Execute a jump when conditions are met
-///
-/// Skips when state.OverrideMovement is true.
-/// </summary>
 [RequireComponent(typeof(PlayerState))]
 public class PlayerJump : MonoBehaviour
 {
@@ -25,7 +14,9 @@ public class PlayerJump : MonoBehaviour
     public float coyoteTime = 0.12f;
     public float jumpBufferTime = 0.15f;
 
-    //public bool jumped = false;
+    [Header("Multi Jump")]
+    public int maxJumps = 2; // 1 = no double jump, 2 = one extra air jump, etc.
+    int jumpsRemaining;
 
     // ─────────────────────────────────────────────
     PlayerState state;
@@ -36,54 +27,55 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        if(state.IsStunned) return;
+        if (state.IsStunned) return;
         if (!Jump) return;
 
-        // Always read input so JumpHeld is accurate for gravity in PlayerPhysics
         bool jumpPressed = Input.GetKeyDown(keyJump);
         state.JumpHeld = Input.GetKey(keyJump);
 
-        // Timers always count down
         coyoteTimer -= Time.deltaTime;
         jumpBufferTimer -= Time.deltaTime;
 
-        // Buffer the jump press
         if (jumpPressed)
             jumpBufferTimer = jumpBufferTime;
 
-        // Refresh coyote window when grounded
+        // Refresh coyote window and jumps when grounded
         if (state.IsGrounded)
-            coyoteTimer = coyoteTime;
-
-        // Attempt jump
-        if (!state.OverrideMovement && jumpBufferTimer > 0f && coyoteTimer > 0f)
         {
-            DoJump();
-            jumpBufferTimer = 0f;
-            coyoteTimer = 0f;
+            coyoteTimer = coyoteTime;
+            jumpsRemaining = maxJumps;
+        }
+
+        if (!state.OverrideMovement && jumpBufferTimer > 0f)
+        {
+            // First jump — requires coyote window (normal grounded jump)
+            if (coyoteTimer > 0f)
+            {
+                DoJump();
+                jumpBufferTimer = 0f;
+                coyoteTimer = 0f;
+            }
+            // Air jumps — coyote expired but still have jumps left
+            else if (jumpsRemaining > 0)
+            {
+                DoJump();
+                jumpBufferTimer = 0f;
+            }
         }
     }
 
     public void DoJump()
     {
-         state.SetVerticalVelocity(jumpForce);
-         onJumped?.Invoke();
+        state.SetVerticalVelocity(jumpForce);
+        jumpsRemaining = Mathf.Max(0, jumpsRemaining - 1);
+        onJumped?.Invoke();
     }
 
-    /// <summary>
-    /// Grant an extra jump from an external script (double jump, bounce pad, etc.).
-    /// </summary>
     public void ForceJump(float? forceOverride = null)
     {
         state.SetVerticalVelocity(forceOverride ?? jumpForce);
     }
 
-    public void CannotJump()
-    {
-        Jump = false;
-    }
-    public void CanJump()
-    {
-        Jump = true;
-    }
+    public void CannotJump() => Jump = false;
+    public void CanJump() => Jump = true;
 }

@@ -14,6 +14,7 @@ public abstract class UsableBehaviour : MonoBehaviour
     public void ConsumeUse(float used = 1f)
     {
         currentUses -= used;
+        Debug.Log(currentUses);
         if (currentUses < useThreshold)
         {
             currentUses = 0;

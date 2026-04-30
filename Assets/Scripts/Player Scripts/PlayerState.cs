@@ -51,10 +51,8 @@ public class PlayerState : MonoBehaviour
     public bool IsDashing;
     public bool IsRolling;
     public bool IsStunned;
-    // Add more as needed:
-    // public bool IsWallSliding;
-    // public bool IsGliding;
-    // public bool IsParrying;
+
+    public bool IsAttacker;
 
     // ─────────────────────────────────────────────
     //  Control flags
@@ -77,6 +75,7 @@ public class PlayerState : MonoBehaviour
     // ─────────────────────────────────────────────
     //  Convenience helpers
     // ─────────────────────────────────────────────
+    public Transform FlapSlot;
 
     public Vector2 Velocity
     {

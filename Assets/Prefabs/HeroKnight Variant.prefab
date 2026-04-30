@@ -474,6 +474,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 994676588940849707}
   m_SourcePrefab: {fileID: 100100000, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+--- !u!4 &655039880467603471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2253891558075842319, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+  m_PrefabInstance: {fileID: 1607861082752343808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3641858396961988674 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2655505060201611074, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
@@ -508,8 +513,11 @@ MonoBehaviour:
   JumpHeld: 0
   IsDashing: 0
   IsRolling: 0
+  IsStunned: 0
+  IsAttacker: 1
   OverrideMovement: 0
   PendingImpulse: {x: 0, y: 0}
+  FlapSlot: {fileID: 655039880467603471}
 --- !u!114 &6674051055819571019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +534,7 @@ MonoBehaviour:
   jumpForce: 8
   coyoteTime: 0.12
   jumpBufferTime: 0.15
+  maxJumps: 1
 --- !u!114 &5675442331457989807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,9 +569,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckDistance: 0.06
+  groundCheckDistance: 0.03
   ceilingCheckDistance: 0.05
-  wallCheckDistance: 0.06
+  wallCheckDistance: 0.05
   rayCount: 4
   skinWidth: 0.01
   maxSlopeAngle: 46
@@ -596,11 +605,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   uses: 0.5
   useThreshold: 0.001
-  uiElement: {fileID: 0}
   abilityKey: 119
   cooldown: 5
   fillDropSpeed: 5
-  playEffects: 1
   autoRefill: 0
   refillDelay: 1
   state: {fileID: 2895701652164600197}
@@ -634,11 +641,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   uses: 1
   useThreshold: 0.001
-  uiElement: {fileID: 0}
   abilityKey: 101
   cooldown: 5
   fillDropSpeed: 5
-  playEffects: 1
   autoRefill: 0
   refillDelay: 1
   state: {fileID: 2895701652164600197}
@@ -659,11 +664,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExampleAbility
   uses: 1
   useThreshold: 0.001
-  uiElement: {fileID: 0}
   abilityKey: 106
   cooldown: 10
   fillDropSpeed: 5
-  playEffects: 1
   autoRefill: 1
   refillDelay: 1
   duration: 5
@@ -683,11 +686,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HighJumpSkill
   uses: 1
   useThreshold: 0.001
-  uiElement: {fileID: 0}
   abilityKey: 107
   cooldown: 8
   fillDropSpeed: 5
-  playEffects: 1
   autoRefill: 0
   refillDelay: 0.5
   jumpMultiplyer: 2.5
@@ -717,6 +718,7 @@ MonoBehaviour:
   StartupFrame3: 0.5
   ActiveFrame3: 3
   Endingframe3: 1
+  AttackKey: 0
 --- !u!114 &6066635937418998757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,16 +733,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::P1_Skill3
   uses: 1
   useThreshold: 0.001
-  uiElement: {fileID: 0}
   abilityKey: 117
   cooldown: 10
   fillDropSpeed: 5
-  playEffects: 1
   autoRefill: 1
   refillDelay: 0.5
-  PlayerCollision: {fileID: 1351836059951943143}
+  health: {fileID: 0}
   rb: {fileID: 7659464600502238672}
   DashForce: 6
+  P1State: {fileID: 0}
+  duration: 1
 --- !u!114 &994676588940849707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,10 +757,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   HealthText: {fileID: 0}
   BaseHealthDef: 8000
-  LoseHP: 40
   P1Movement: {fileID: 5675442331457989807}
   P1Jump: {fileID: 6674051055819571019}
   rb: {fileID: 7659464600502238672}
+  recovertime: 2
 --- !u!4 &7102908778274621618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}

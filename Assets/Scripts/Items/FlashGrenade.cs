@@ -23,6 +23,10 @@ public class FlashGrenade : Item
         rb.angularVelocity = 0f;
 
         Vector2 direction = player.transform.right;
+        if (!player.GetComponent<PlayerState>().IsFacingRight)
+        {
+            direction *= -1;
+        }
         rb.AddForce(direction * throwForce, ForceMode2D.Impulse);
         rb.AddTorque(Random.Range(-torqueForce, torqueForce), ForceMode2D.Impulse);
 

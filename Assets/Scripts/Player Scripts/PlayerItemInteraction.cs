@@ -20,6 +20,7 @@ public class PlayerItemInteraction : MonoBehaviour
             heldItem.OnItemDestroyed += OnHeldItemDestroyed;
             heldItem.OnPickUp();
             OnItemPickup?.Invoke();
+            ItemSpawner.Instance.numItemsInMap--;
         }
     }
 
