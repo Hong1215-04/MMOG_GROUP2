@@ -10,9 +10,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float BaseHealthDef = 8000f;
     //public float LoseHP = 40f;
     [SerializeField] PlayerMovement P1Movement;
+    [SerializeField] PlayerStun StunEffect;
     [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb ;
     [SerializeField] float recovertime = 2f;
+    [SerializeField] float Tasedtime = 1.0f;
     public Action OnDamageTaken;
     [SerializeField] String layer;
     //Vector2 lastdirection;
@@ -156,10 +158,11 @@ public class Health : MonoBehaviour
 
     IEnumerator Tased()
     {
-        rb.linearVelocity = Vector2.zero;   
-        yield return new WaitForSeconds(0.75f);
+        rb.linearVelocity = Vector2.zero;
+        yield return new WaitForSeconds(Tasedtime);
         P1Movement.CanMove();
         P1Jump.CanJump();
+        //StunEffect.StunPlayer(Tasedtime);
     }
 
     public void set_invincible()

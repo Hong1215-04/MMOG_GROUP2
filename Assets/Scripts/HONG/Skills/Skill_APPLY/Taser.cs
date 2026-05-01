@@ -35,16 +35,12 @@ public class Taser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        //other.gameObject.GetComponentInParent<PlayerStun>().StunPlayer(1f);
+        life--;
+        if (life <= 0)
         {
-            other.gameObject.GetComponentInParent<PlayerStun>().StunPlayer(1f);
-
-            life--;
-            if (life <= 0)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            Destroy(gameObject);
+            return;
         }
     }
 }
