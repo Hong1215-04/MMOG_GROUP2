@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Taser : MonoBehaviour
 {
@@ -34,11 +35,16 @@ public class Taser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        life--;
-        if (life <= 0)
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            return;
+            other.gameObject.GetComponentInParent<PlayerStun>().StunPlayer(1f);
+
+            life--;
+            if (life <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
     }
 }
