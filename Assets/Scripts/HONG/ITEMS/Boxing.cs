@@ -12,8 +12,8 @@ public class Boxing : Item
     {
         State = player.GetComponent<PlayerState>();
         Attack = player.GetComponent<Player_Attack>();
-        Affecting = true;
         State.IsBuffed = true;
+        Affecting = true;
         BoxingRen.enabled = true;
         Attack.buffed();
     }

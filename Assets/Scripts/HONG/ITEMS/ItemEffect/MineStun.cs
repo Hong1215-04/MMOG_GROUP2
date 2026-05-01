@@ -8,7 +8,8 @@ public class MineStun : MonoBehaviour
     [SerializeField] Landmine Mine;
     [SerializeField] GameObject explosion;
     [SerializeField] float StunTime = 1.2f;
-    
+
+    private PlayerState State;
     private Health PlayerHealth;
     private PlayerMovement Movement;
     private PlayerJump Jump;
@@ -26,48 +27,66 @@ public class MineStun : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            State = other.GetComponentInParent<PlayerState>();
+       
             if (Activated)
             {
-                Instantiate(explosion, transform.position, Quaternion.identity);
+                if (State.IsBlocked)
+                {
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    Mine.StopDetect();
+                    Activated = false;
+                    Mine.MineTriggered();
+                }
+                else if (State.IsBlocked == false) 
+                {
+                    Instantiate(explosion, transform.position, Quaternion.identity);
 
-                PlayerHealth = other.GetComponentInParent<Health>();
+                    PlayerHealth = other.GetComponentInParent<Health>();
 
-                Movement = other.GetComponentInParent<PlayerMovement>();
-                Jump = other.GetComponentInParent<PlayerJump>();
-                playerrb = other.GetComponentInParent<Rigidbody2D>();
+                    Movement = other.GetComponentInParent<PlayerMovement>();
+                    Jump = other.GetComponentInParent<PlayerJump>();
+                    playerrb = other.GetComponentInParent<Rigidbody2D>();
 
-                Movement.CannotMove();
-                Jump.CannotJump();
+                    Movement.CannotMove();
+                    Jump.CannotJump();
 
-                Vector2 playerPos = other.transform.position;
-                Vector2 minePos = transform.position;
+                    Vector2 playerPos = other.transform.position;
+                    Vector2 minePos = transform.position;
 
-                Vector2 direction = (playerPos - minePos).normalized;
-                float distance = Vector2.Distance(playerPos, minePos);
+                    Vector2 direction = (playerPos - minePos).normalized;
+                    float distance = Vector2.Distance(playerPos, minePos);
 
-                float maximumdis = 3.0f;
-                float normalizeddis = Mathf.Clamp01(distance / maximumdis);
+                    float maximumdis = 3.0f;
+                    float normalizeddis = Mathf.Clamp01(distance / maximumdis);
 
-                float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
+                    float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
 
-                float force = Mathf.Lerp(5f, MineBlowDistance, inverted);
+                    float force = Mathf.Lerp(5f, MineBlowDistance, inverted);
 
-                //rb.linearVelocity = Vector2.zero;
-                playerrb.AddForce(direction * force, ForceMode2D.Impulse);
+                    //rb.linearVelocity = Vector2.zero;
+                    playerrb.AddForce(direction * force, ForceMode2D.Impulse);
 
-                float minedmg = MineDamage * 2f;
-                PlayerHealth.LoseLifeDEF(minedmg);
+                    float minedmg = MineDamage * 2f;
+                    PlayerHealth.LoseLifeDEF(minedmg);
 
-                StartCoroutine(RegainMove_Del());
+                    StartCoroutine(RegainMove_Del());
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        State = other.GetComponentInParent<PlayerState>();
+
         if (other.CompareTag("Player"))
         {
             Activated = true;
+        }
+        if (State.IsBlocked)
+        {
+            State.IsBlocked = false;
         }
     }
 

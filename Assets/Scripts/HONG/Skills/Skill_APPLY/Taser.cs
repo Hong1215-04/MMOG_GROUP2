@@ -7,6 +7,7 @@ public class Taser : MonoBehaviour
     [SerializeField] float bulletspeed = 30.0f;
     int life = 1;
 
+    private PlayerState State;
     //float avaliabletime;
     //float flytime;
 
@@ -35,12 +36,40 @@ public class Taser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //other.gameObject.GetComponentInParent<PlayerStun>().StunPlayer(1f);
-        life--;
-        if (life <= 0)
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            return;
+            State = other.gameObject.GetComponentInParent<PlayerState>();
+
+            if (State.IsBlocked)
+            {
+                State.IsBlocked = false;
+
+                life--;
+                if (life <= 0)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+            else
+            {
+                life--;
+                if (life <= 0)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+        }
+        //other.gameObject.GetComponentInParent<PlayerStun>().StunPlayer(1f);
+        else
+        {
+            life--;
+            if (life <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
     }
 }

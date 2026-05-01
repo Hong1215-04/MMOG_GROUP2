@@ -9,8 +9,7 @@ public class P2_Skill3 : PlayerAbility
     [SerializeField] P1_SKILL3 P1Skill3;
     [SerializeField] SpeedUpAbility P1Skill1;
     [SerializeField] HighJumpSkill P1Skill2;
-
-    
+    [SerializeField] PlayerState State;
 
     Vector2 EnemyPos;
     Vector2 P2_Pos;
@@ -24,13 +23,22 @@ public class P2_Skill3 : PlayerAbility
     {
         if (CanCast)
         {
-            time = 0;
-            P1Skill1.Silence = true;
-            P1Skill2.Silence = true;
-            P1Skill3.Silence = true;
-            movement = Player1.GetComponent<PlayerMovement>();
-            movement.AddSpeedMultiplier(SlowSkillMultiplier);
-            Casting = true;
+            if (State.IsBlocked)
+            {
+                State.IsBlocked = false;
+                ConsumeUse();
+            }
+            else if (State.IsBlocked == false)
+            {
+                time = 0;
+                P1Skill1.Silence = true;
+                P1Skill2.Silence = true;
+                P1Skill3.Silence = true;
+                movement = Player1.GetComponent<PlayerMovement>();
+                movement.AddSpeedMultiplier(SlowSkillMultiplier);
+                Casting = true;
+                ConsumeUse();
+            }
         }  
     }
 

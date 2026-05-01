@@ -6,9 +6,10 @@ public class AttackDMG : MonoBehaviour
     [SerializeField] Health healthP2;
     [SerializeField] Health healthP1;
     [SerializeField] Player_Attack attack;
-    [SerializeField] PlayerState State;
+    [SerializeField] PlayerState StateP1;
     [SerializeField] float BuffMulti = 1.5f;
 
+    private PlayerState StateP2;
     private float BuffDmg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,18 +28,36 @@ public class AttackDMG : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
-            if (State.IsBuffed)
+            StateP2 = other.GetComponentInParent<PlayerState>();
+
+            if (StateP2.IsBlocked)
+            {
+                attack.hitted();
+            }
+            else if (StateP1.IsBuffed)
             {
                 BuffDmg = ATKDMG * BuffMulti;
-                healthP2.LoseLifeDEF(BuffDmg);
-                healthP1.GainLifeDEF(BuffDmg);
+                healthP1.LoseLifeDEF(BuffDmg);
+                healthP2.GainLifeDEF(BuffDmg);
                 attack.hitted();
             }
             else
             {
-                healthP2.LoseLifeDEF(ATKDMG);
-                healthP1.GainLifeDEF(ATKDMG);
+                healthP1.LoseLifeDEF(ATKDMG);
+                healthP2.GainLifeDEF(ATKDMG);
                 attack.hitted();
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        StateP2 = other.GetComponentInParent<PlayerState>();
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
+        {
+            if (StateP2.IsBlocked)
+            {
+                StateP2.IsBlocked = false;
             }
         }
     }

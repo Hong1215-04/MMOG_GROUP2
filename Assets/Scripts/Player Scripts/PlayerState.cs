@@ -54,6 +54,7 @@ public class PlayerState : MonoBehaviour
 
     public bool IsAttacker;
     public bool IsBuffed;
+    public bool IsBlocked;
 
     // ─────────────────────────────────────────────
     //  Control flags

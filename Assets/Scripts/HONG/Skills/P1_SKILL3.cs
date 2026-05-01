@@ -13,6 +13,7 @@ public class P1_SKILL3 : PlayerAbility
 
     float usedtime;
     public bool Silence;
+    bool UsedSkill;
 
     //bool DashUsed = false;
 
@@ -23,6 +24,8 @@ public class P1_SKILL3 : PlayerAbility
         P1Collison.SetActive(true);
         Silence = false;
         col.enabled = true;
+        usedtime = 0f;
+        UsedSkill = false;
     }
 
     public override void Update()
@@ -31,11 +34,18 @@ public class P1_SKILL3 : PlayerAbility
         //{
         //    col.enabled = true;
         //}
-        if (Time.time - usedtime > duration)
+        if (UsedSkill)
         {
-            health.not_invincible();
+            usedtime += Time.deltaTime;
+        }
+
+        if (usedtime >= duration)
+        {
+            health.Not_invincible();
             P1Collison.SetActive(true);
             col.enabled = true;
+            UsedSkill = false;
+            usedtime = 0f;
         }
         base.Update();
     }
@@ -47,16 +57,18 @@ public class P1_SKILL3 : PlayerAbility
             Debug.Log("GOT");
             if (P1State.IsFacingRight == true)
             {
-                usedtime = Time.time;
-                health.set_invincible();
+                UsedSkill = true;  
+                usedtime = 0f;
+                health.Set_invincible();
                 P1Collison.SetActive(false);
                 col.enabled = false;
                 rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
             }
             else if (P1State.IsFacingRight == false)
             {
-                usedtime = Time.time;
-                health.set_invincible();
+                UsedSkill = true;
+                usedtime = 0f;
+                health.Set_invincible();
                 P1Collison.SetActive(false);
                 col.enabled = false;
                 rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
