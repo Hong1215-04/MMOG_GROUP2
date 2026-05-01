@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG_P2
   ATKDMG: 200
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
 --- !u!1 &73718181 stripped
@@ -408,9 +408,7 @@ MonoBehaviour:
   P1Jump: {fileID: 73718191}
   rb: {fileID: 73718194}
   recovertime: 2
-  layer:
-    serializedVersion: 2
-    m_Bits: 256
+  layer: P1_Damage
   IsAttacker: 1
   invincible: 0
 --- !u!114 &81193406 stripped
@@ -455,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG_P2
   ATKDMG: 700
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
 --- !u!61 &157677615
@@ -565,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG_P2
   ATKDMG: 500
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
 --- !u!61 &196022745
@@ -1939,7 +1937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG
   ATKDMG: 40
   healthP2: {fileID: 73718202}
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   attack: {fileID: 1099979245}
 --- !u!1 &843133646
 GameObject:
@@ -1951,6 +1949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843133647}
   - component: {fileID: 843133648}
+  - component: {fileID: 843133649}
   m_Layer: 7
   m_Name: P1Collision
   m_TagString: Player
@@ -2003,7 +2002,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2019,6 +2018,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.49147797, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &843133649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843133646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1cead4f00fefd34dad8c699beb00376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  HealthText: {fileID: 930192244}
+  BaseHealthDef: 8000
+  P1Movement: {fileID: 1099979249}
+  P1Jump: {fileID: 1099979248}
+  rb: {fileID: 1099979224}
+  recovertime: 2
+  layer: P2_Damage
+  IsAttacker: 0
+  invincible: 0
 --- !u!1 &857658251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2328,7 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG
   ATKDMG: 80
   healthP2: {fileID: 73718202}
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   attack: {fileID: 1099979245}
 --- !u!1001 &978741238
 PrefabInstance:
@@ -2343,9 +2363,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1099979224}
     - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: layer
+      value: P2_Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 930192244}
+    - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: invincible
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: recovertime
       value: 2
@@ -2377,7 +2405,7 @@ PrefabInstance:
     - target: {fileID: 6066635937418998757, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 1099979205}
+      objectReference: {fileID: 0}
     - target: {fileID: 6066635937418998757, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: P1State
       value: 
@@ -2477,6 +2505,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2524518699333162258, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
     - {fileID: 7554452815399733747, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+    - {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1351836059951943143, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
     m_AddedGameObjects:
@@ -2663,17 +2692,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
   m_PrefabInstance: {fileID: 978741238}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1099979205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 994676588940849707, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
-  m_PrefabInstance: {fileID: 978741238}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099979204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1cead4f00fefd34dad8c699beb00376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!61 &1099979222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2704,7 +2722,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2741,6 +2759,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7102908778274621618, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
   m_PrefabInstance: {fileID: 978741238}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1099979248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6674051055819571019, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099979204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907904049003be46a8d6ef1bd7dcc01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
+--- !u!114 &1099979249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5675442331457989807, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+  m_PrefabInstance: {fileID: 978741238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099979204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb409c7234920c48a8a49b188eeb1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &1130091724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,7 +2795,7 @@ GameObject:
   - component: {fileID: 1130091729}
   - component: {fileID: 1130091728}
   - component: {fileID: 1130091727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GasBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3117,7 +3157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackDMG
   ATKDMG: 120
   healthP2: {fileID: 73718202}
-  healthP1: {fileID: 1099979205}
+  healthP1: {fileID: 0}
   attack: {fileID: 1099979245}
 --- !u!1 &1575469514
 GameObject:
@@ -3724,6 +3764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coins
       objectReference: {fileID: 0}
+    - target: {fileID: 4142860307507757891, guid: 6552b8c55afdc66468e82a206d2b743f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5212467012056308302, guid: 6552b8c55afdc66468e82a206d2b743f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.27
@@ -3788,6 +3832,10 @@ PrefabInstance:
     - target: {fileID: 5204056153024751336, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
       propertyPath: m_Name
       value: Landmine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204056153024751336, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7187049345158528896, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
       propertyPath: m_LocalPosition.x
