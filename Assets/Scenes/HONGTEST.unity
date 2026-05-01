@@ -2881,10 +2881,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -11.38, y: 0.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.33532, y: 0.33532, z: 0.33532}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1323764391}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &1130091727
@@ -2905,10 +2904,10 @@ MonoBehaviour:
   canPickup: 1
   rb: {fileID: 1130091728}
   BombSprite: {fileID: 1130091725}
-  GasArea: {fileID: 1323764390}
+  GasArea: {fileID: 9107764907424718005, guid: 4d0e3686373403342b64e84e9e332f9d, type: 3}
   explodetime: 1.5
-  throwForce: 8
-  torqueForce: 5
+  throwForce: 10
+  torqueForce: 3
 --- !u!50 &1130091728
 Rigidbody2D:
   serializedVersion: 5
@@ -3086,37 +3085,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.83136463, y: 1.2656522}
   m_EdgeRadius: 0
---- !u!1 &1323764390
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1323764391}
-  m_Layer: 0
-  m_Name: PoisonArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1323764391
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323764390}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -3.4376197, y: 4.2354245, z: 0}
-  m_LocalScale: {x: 0.42372873, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1130091726}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1430589778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,6 +3814,10 @@ PrefabInstance:
     - target: {fileID: 5204056153024751336, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650934146422997742, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7187049345158528896, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
       propertyPath: m_LocalPosition.x
