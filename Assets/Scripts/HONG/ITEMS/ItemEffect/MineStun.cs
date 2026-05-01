@@ -6,6 +6,7 @@ public class MineStun : MonoBehaviour
     [SerializeField] float MineBlowDistance = 10f;
     [SerializeField] float MineDamage = 200f;
     [SerializeField] Landmine Mine;
+    [SerializeField] GameObject explosion;
     [SerializeField] float StunTime = 1.2f;
     
     private Health PlayerHealth;
@@ -27,6 +28,8 @@ public class MineStun : MonoBehaviour
         {
             if (Activated)
             {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+
                 PlayerHealth = other.GetComponentInParent<Health>();
 
                 Movement = other.GetComponentInParent<PlayerMovement>();

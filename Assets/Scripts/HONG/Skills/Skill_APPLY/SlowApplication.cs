@@ -38,7 +38,7 @@ public class SlowApplication : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
         {
-            movement = other.GetComponent<PlayerMovement>();
+            movement = other.GetComponentInParent<PlayerMovement>();
             movement.AddSpeedMultiplier(SlowSkillMultiplier);
             Slowtime = 0f;
             Slowing = true;
@@ -50,7 +50,7 @@ public class SlowApplication : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
         {
-            movement = other.GetComponent<PlayerMovement>();
+            movement = other.GetComponentInParent<PlayerMovement>();
             movement.AddSpeedMultiplier(SlowSkillMultiplier);
             Slowtime = 0f;
             Slowing = true; 
