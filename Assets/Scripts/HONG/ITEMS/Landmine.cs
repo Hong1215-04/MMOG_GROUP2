@@ -34,4 +34,9 @@ public class Landmine : Item
         MineTrigger.SetActive(false);
         ConsumeUse();
     }
+
+    public void StopDetect()
+    {
+        rb.simulated = false;
+    }
 }

@@ -15,6 +15,11 @@ public class MineStun : MonoBehaviour
     public bool Activated = false;
     public bool IsInvincible;
 
+    private void Start()
+    {
+        
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,38 +27,35 @@ public class MineStun : MonoBehaviour
         {
             if (Activated)
             {
-                PlayerHealth = other.GetComponent<Health>();
-                
-                if (!other.GetComponent<Health>().invincible)
-                {
-                    Movement = other.GetComponent<PlayerMovement>();
-                    Jump = other.GetComponent<PlayerJump>();
-                    playerrb = other.GetComponent<Rigidbody2D>();
+                PlayerHealth = other.GetComponentInParent<Health>();
 
-                    Movement.CannotMove();
-                    Jump.CannotJump();
+                Movement = other.GetComponentInParent<PlayerMovement>();
+                Jump = other.GetComponentInParent<PlayerJump>();
+                playerrb = other.GetComponentInParent<Rigidbody2D>();
 
-                    Vector2 playerPos = other.transform.position;
-                    Vector2 minePos = transform.position;
+                Movement.CannotMove();
+                Jump.CannotJump();
 
-                    Vector2 direction = (playerPos - minePos).normalized;
-                    float distance = Vector2.Distance(playerPos, minePos);
+                Vector2 playerPos = other.transform.position;
+                Vector2 minePos = transform.position;
 
-                    float maximumdis = 3.0f;
-                    float normalizeddis = Mathf.Clamp01(distance / maximumdis);
+                Vector2 direction = (playerPos - minePos).normalized;
+                float distance = Vector2.Distance(playerPos, minePos);
 
-                    float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
+                float maximumdis = 3.0f;
+                float normalizeddis = Mathf.Clamp01(distance / maximumdis);
 
-                    float force = Mathf.Lerp(5f, MineBlowDistance, inverted);
+                float inverted = 1f - normalizeddis; //closer -- bigger value (more close -- normalizedis more small)
 
-                    //rb.linearVelocity = Vector2.zero;
-                    playerrb.AddForce(direction * force, ForceMode2D.Impulse);
+                float force = Mathf.Lerp(5f, MineBlowDistance, inverted);
 
-                    float minedmg = MineDamage * 2f;
-                    PlayerHealth.LoseLifeDEF(minedmg);
+                //rb.linearVelocity = Vector2.zero;
+                playerrb.AddForce(direction * force, ForceMode2D.Impulse);
 
-                    StartCoroutine(RegainMove_Del());
-                }
+                float minedmg = MineDamage * 2f;
+                PlayerHealth.LoseLifeDEF(minedmg);
+
+                StartCoroutine(RegainMove_Del());
             }
         }
     }
@@ -68,10 +70,11 @@ public class MineStun : MonoBehaviour
 
     IEnumerator RegainMove_Del()
     {
+        Mine.StopDetect();
         yield return new WaitForSeconds(StunTime);
         Movement.CanMove();
         Jump.CanJump();
-        Mine.MineTriggered();
         Activated = false;
+        Mine.MineTriggered();
     }
 }
