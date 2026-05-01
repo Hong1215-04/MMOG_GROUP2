@@ -15,7 +15,6 @@ public class FlashGrenade : Item
     public override void DoUse()
     {
         transform.SetParent(null);
-
         spriteRenderer.enabled = true;
 
         rb.simulated = true;
