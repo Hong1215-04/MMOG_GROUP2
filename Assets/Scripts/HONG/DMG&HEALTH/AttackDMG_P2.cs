@@ -6,6 +6,10 @@ public class AttackDMG_P2 : MonoBehaviour
     [SerializeField] Health healthP1;
     [SerializeField] Health healthP2;
     [SerializeField] Player_Attack attack;
+    [SerializeField] PlayerState State;
+    [SerializeField] float BuffMulti = 1.5f;
+
+    private float BuffDmg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,9 +27,19 @@ public class AttackDMG_P2 : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
         {
-            healthP1.LoseLifeDEF(ATKDMG);
-            healthP2.GainLifeDEF(ATKDMG);
-            attack.hitted();
+            if (State.IsBuffed)
+            {
+                BuffDmg = ATKDMG * BuffMulti;
+                healthP2.LoseLifeDEF(BuffDmg);
+                healthP1.GainLifeDEF(BuffDmg);
+                attack.hitted();
+            }
+            else
+            {
+                healthP2.LoseLifeDEF(ATKDMG);
+                healthP1.GainLifeDEF(ATKDMG);
+                attack.hitted();
+            }
         }
     }
 }

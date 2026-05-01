@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float BaseHealthDef = 8000f;
     //public float LoseHP = 40f;
     [SerializeField] PlayerMovement P1Movement;
-    [SerializeField] PlayerStun StunEffect;
+    //[SerializeField] PlayerStun StunEffect;
     [SerializeField] PlayerJump P1Jump;
     [SerializeField] Rigidbody2D rb ;
     [SerializeField] float recovertime = 2f;
