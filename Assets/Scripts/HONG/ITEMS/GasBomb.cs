@@ -14,7 +14,7 @@ public class GasBomb : Item
 
     protected override void Start()
     {
-        GasArea.SetActive(false);
+        //GasArea.SetActive(false);
         base.Start();
     }
     public override void DoUse()
@@ -30,6 +30,8 @@ public class GasBomb : Item
         rb.AddForce(direction * throwForce, ForceMode2D.Impulse);
         rb.AddTorque(Random.Range(-torqueForce, torqueForce), ForceMode2D.Impulse);
 
+        thrown = true;
+        thrownTime = Time.time;
     }
 
     public override void OnPickUp()
