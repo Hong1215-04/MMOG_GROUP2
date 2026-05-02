@@ -16,13 +16,11 @@ public class HighJumpSkill : PlayerAbility
     }
 
     public override void DoUse()
-    { 
-        if (!Silence)
-        {
-            playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer;
-            ConsumeUse();
-            jumpMultiplierAdded = true;
-        }
+    {
+        playerjump.jumpForce = playerjump.jumpForce * jumpMultiplyer;
+        ConsumeUse();
+        jumpMultiplierAdded = true;
+
     }
 
     private void OnEnable()
@@ -34,6 +32,7 @@ public class HighJumpSkill : PlayerAbility
     {
         if (jumpMultiplierAdded)
         {
+            CompleteUse();
             playerjump.jumpForce = playerjump.jumpForce / jumpMultiplyer;
             jumpMultiplierAdded = false;
         }
@@ -41,7 +40,7 @@ public class HighJumpSkill : PlayerAbility
 
     protected override bool CanPerform()
     {
-        return !jumpMultiplierAdded;
+        return !jumpMultiplierAdded && !Silence;
     }
 
     public override void Update()

@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using System;
 
 public class Health : MonoBehaviour
@@ -41,7 +40,7 @@ public class Health : MonoBehaviour
         if (_currentHealthDEF <= 0)
         {
             //play anim if done
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
         //lastdirection = rb.linearVelocity;
     }

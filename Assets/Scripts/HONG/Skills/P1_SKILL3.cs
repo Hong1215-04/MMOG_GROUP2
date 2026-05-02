@@ -11,6 +11,7 @@ public class P1_SKILL3 : PlayerAbility
 
     float usedtime;
     public bool Silence;
+    bool dashing;
 
     //bool DashUsed = false;
 
@@ -24,8 +25,10 @@ public class P1_SKILL3 : PlayerAbility
 
     public override void Update()
     {
-        if (Time.time - usedtime > duration)
+        if (Time.time - usedtime > duration && dashing)
         {
+            dashing = false;
+            CompleteUse();
             health.not_invincible();
             P1Collison.SetActive(true);
         }
@@ -34,8 +37,7 @@ public class P1_SKILL3 : PlayerAbility
 
     public override void DoUse()
     {
-        if (!Silence)
-        {
+            dashing = true;
             Debug.Log("GOT");
             if (P1State.IsFacingRight == true)
             {
@@ -52,15 +54,11 @@ public class P1_SKILL3 : PlayerAbility
                 rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
             }
             ConsumeUse();
-        }
-        //Vector2 playerdir;
-        //playerdir = rb.linearVelocity;
-        //float facedir = playerdir.normalized.x;
-        //Vector2 Dashdir = new Vector2(facedir, 0);
+       
     }
 
     protected override bool CanPerform()
     {
-        return true;
+        return !Silence;
     }
 }

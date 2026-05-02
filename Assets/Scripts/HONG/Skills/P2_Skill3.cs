@@ -28,10 +28,12 @@ public class P2_Skill3 : PlayerAbility
             P1Skill1.Silence = true;
             P1Skill2.Silence = true;
             P1Skill3.Silence = true;
+            P1Skill2.CompleteUse();
             movement = Player1.GetComponent<PlayerMovement>();
             movement.AddSpeedMultiplier(SlowSkillMultiplier);
             Casting = true;
-        }  
+        }
+        CompleteUse();
     }
 
     protected override bool CanPerform()

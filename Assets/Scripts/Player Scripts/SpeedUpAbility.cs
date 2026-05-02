@@ -18,29 +18,23 @@ public class SpeedUpAbility : PlayerAbility
 
     public override void DoUse()
     {
-        if (!Silence)
-        {
-            playerMovement.AddSpeedMultiplier(speedMultiplier);
-            usedTime = Time.time;
-            isSpeed = true;
-            ConsumeUse();
-            StartRefill(uses - currentUses);
-        }
-        if (Silence)
-        {
-            Debug.Log("GOTSIL");
-        }
+        playerMovement.AddSpeedMultiplier(speedMultiplier);
+        usedTime = Time.time;
+        isSpeed = true;
+        ConsumeUse();
+        StartRefill(uses - currentUses);
     }
 
     protected override bool CanPerform()
     {
-        return !isSpeed;
+        return !isSpeed && !Silence;
     }
 
     public override void Update()
     {
-        if (Time.time - usedTime > duration)
+        if (Time.time - usedTime > duration && isSpeed)
         {
+            CompleteUse();
             playerMovement.RemoveSpeedMultiplier(speedMultiplier);
             isSpeed = false;
         }

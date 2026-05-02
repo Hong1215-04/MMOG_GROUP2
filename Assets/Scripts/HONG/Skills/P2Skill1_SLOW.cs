@@ -30,6 +30,7 @@ public class P2Skill1_SLOW : PlayerAbility
         SlowDectection.enabled = true;
         yield return new WaitForSeconds(ActiveFrame1);
         SlowDectection.enabled = false;
+        CompleteUse();
         yield return new WaitForSeconds(EndingFrame1);
     }
 

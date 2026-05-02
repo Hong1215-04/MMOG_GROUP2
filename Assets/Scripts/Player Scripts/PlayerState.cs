@@ -76,6 +76,8 @@ public class PlayerState : MonoBehaviour
     //  Convenience helpers
     // ─────────────────────────────────────────────
     public Transform FlapSlot;
+    public Animator HeadAnim;
+    public Transform HeadSlot;
 
     public Vector2 Velocity
     {

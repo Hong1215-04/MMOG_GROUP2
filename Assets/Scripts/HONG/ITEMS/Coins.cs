@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class Coins : Item
 {
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] float CoinPlusHealth;
+    [SerializeField] float CoinPlusHealth, animDuration;
+    
 
     private float DEFCoinHealth;
     private float ATKCoinHealth;
@@ -11,7 +13,9 @@ public class Coins : Item
 
     public override void DoUse()
     {
-        playerhealth = player.GetComponent<Health>();
+        spriteRenderer.enabled = true;
+        playerhealth = player.GetComponentInChildren<Health>();
+        player.GetComponent<PlayerState>().HeadAnim.SetTrigger("Move");
         if (playerhealth.IsAttacker)
         {
             ATKCoinHealth = CoinPlusHealth * 2f;
@@ -30,7 +34,19 @@ public class Coins : Item
     {
         rb.simulated = false;
         spriteRenderer.enabled = false;
-        transform.SetParent(player.transform);
+        transform.SetParent(player.GetComponent<PlayerState>().HeadSlot);
         transform.localPosition = Vector3.zero;
+    }
+
+    protected override void OnUsesCompleted()
+    {
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+
+    IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(animDuration);
+        Destroy(gameObject);
     }
 }

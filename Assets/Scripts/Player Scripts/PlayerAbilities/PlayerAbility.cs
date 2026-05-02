@@ -50,6 +50,11 @@ public abstract class PlayerAbility : UsableBehaviour
         StartCooldown();
     }
 
+    public void CompleteUse()
+    {
+        OnUseCompleted?.Invoke();
+    }
+
     protected void StartCooldown()
     {
         isInCooldown = true;

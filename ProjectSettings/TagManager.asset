@@ -41,5 +41,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CopHeadLights
+    uniqueID: 3765104439
+    locked: 0
   m_RenderingLayers:
   - Default

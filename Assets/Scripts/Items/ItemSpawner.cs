@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemSpawner : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] int maxItemsInMap, spawnChancePerIntervalPercentage;
     [SerializeField] float spawnItemIntervalDuration, minXSpawnRange, MaxXSpawnRange;
 
-    float lastSpawnCheckTime = Time.time;
+    float lastSpawnCheckTime;
     
     public int numItemsInMap = 0;
 
@@ -16,6 +15,7 @@ public class ItemSpawner : MonoBehaviour
 
     void Awake()
     {
+        lastSpawnCheckTime = Time.time;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

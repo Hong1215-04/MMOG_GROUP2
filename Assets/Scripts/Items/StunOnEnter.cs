@@ -15,4 +15,9 @@ public class StunOnEnter : MonoBehaviour
             OnEnterStun?.Invoke();
         }
     }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
 }

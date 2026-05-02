@@ -31,7 +31,6 @@ public class InstantDashAbility : PlayerAbility
         state.SetHorizontalVelocity(0f);
         state.IsDoingSomething = false;
         state.OverrideMovement = false;
-
-
+        CompleteUse();
     }
 }
