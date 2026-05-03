@@ -52,7 +52,7 @@ public class GasBomb : Item
         {
             if (GasArea != null)
             {
-                Instantiate(GasArea, transform.position, Quaternion.Euler(0,0,90));
+                Instantiate(GasArea, transform.position, Quaternion.identity);
                 ConsumeUse();
             }
         }

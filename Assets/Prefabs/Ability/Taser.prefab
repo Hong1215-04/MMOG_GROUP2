@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4543114862693922354}
   - component: {fileID: 7042095938977787400}
   - component: {fileID: 8699471481783257275}
-  - component: {fileID: 4088662628396428366}
   - component: {fileID: 6788607385075196383}
+  - component: {fileID: 5852428096883919595}
   m_Layer: 11
   m_Name: Taser
   m_TagString: Untagged
@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5105126, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 3260714212148884173, guid: 114f4caf68581a348bbbc431f35c254f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,8 +121,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &4088662628396428366
-CircleCollider2D:
+--- !u!114 &6788607385075196383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4846369795486217265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eed3abf934cde947893ef6069a54faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Taser
+  rb: {fileID: 8699471481783257275}
+  bulletspeed: 30
+--- !u!70 &5852428096883919595
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,19 +169,6 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.6
---- !u!114 &6788607385075196383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4846369795486217265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eed3abf934cde947893ef6069a54faa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Taser
-  rb: {fileID: 8699471481783257275}
-  bulletspeed: 30
+  m_Offset: {x: -0.07603738, y: 0.04344955}
+  m_Size: {x: 1.1900208, y: 0.7772449}
+  m_Direction: 1
