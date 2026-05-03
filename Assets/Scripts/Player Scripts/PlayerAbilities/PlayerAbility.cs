@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class PlayerAbility : UsableBehaviour
 {
-    [SerializeField] KeyCode abilityKey;
+    public KeyCode abilityKey;
     [SerializeField] float cooldown;
     [SerializeField] float fillDropSpeed = 5f;
 
@@ -11,7 +11,6 @@ public abstract class PlayerAbility : UsableBehaviour
     [SerializeField] bool autoRefill = false;
     [SerializeField] float refillDelay = 0.5f;
 
-    public KeyCode AbilityKey => abilityKey;
     public event Action<bool> OnUsed;           // bool = isLastUse
     public event Action OnUseCompleted;
     public event Action<float> OnCooldownTick;   // float = seconds remaining

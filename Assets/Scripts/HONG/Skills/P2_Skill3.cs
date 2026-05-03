@@ -20,6 +20,8 @@ public class P2_Skill3 : PlayerAbility
 
     bool Casting;
     bool CanCast;
+
+
     public override void DoUse()
     {
         if (CanCast)
@@ -43,6 +45,24 @@ public class P2_Skill3 : PlayerAbility
 
     public override void Update()
     {
+        if(P1Skill1 == null)
+        {
+            P1Skill1 = FindAnyObjectByType<SpeedUpAbility>();
+            P1Skill2 = FindAnyObjectByType<HighJumpSkill>();
+            P1Skill3 = FindAnyObjectByType<P1_SKILL3>();
+        }
+        if(Player1.gameObject == null)
+        {
+            PlayerMovement[] allPlayer = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None);
+            foreach (PlayerMovement h in allPlayer)
+            {
+                if (h.gameObject != gameObject)
+                {
+                    Player1 = h.gameObject;
+                    break;
+                }
+            }
+        }
         EnemyPos = Player1.transform.position;
         P2_Pos = transform.position;
         distance = Vector2.Distance(EnemyPos, P2_Pos);

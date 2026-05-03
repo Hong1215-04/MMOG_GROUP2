@@ -15,7 +15,15 @@ public class AttackDMG : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-    
+        Health[] allHealth = FindObjectsByType<Health>(FindObjectsSortMode.None);
+        foreach (Health h in allHealth)
+        {
+            if (h != healthP1)
+            {
+                healthP2 = h;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame

@@ -49,7 +49,7 @@ public class DashAbilityHeld : PlayerAbility
         currentUses -= Time.deltaTime;
 
         // Stop when key released or uses fully drained
-        if (!Input.GetKey(AbilityKey) || currentUses <= 0)
+        if (!Input.GetKey(abilityKey) || currentUses <= 0)
             StopDash();
     }
 

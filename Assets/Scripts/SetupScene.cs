@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SetupScene : MonoBehaviour
 {
+
     [SerializeField] CameraFollow follow;
     [SerializeField] CameraZoom zoom;
     [SerializeField] Transform spawnPoint1, spawnPoint2;
@@ -18,6 +19,13 @@ public class SetupScene : MonoBehaviour
     [SerializeField] float countdownHoldDelay = 0.3f;
     [SerializeField] AudioSource countdown;
     private float countdownSlideSpeed;
+    [SerializeField] KeyCode p1DashInput, p2DashInput;
+    [SerializeField] KeyCode[] p1AbilityInputs;
+    [SerializeField] KeyCode[] p2AbilityInputs;
+    [SerializeField] TextMeshProUGUI p1HealthText, p2HealthText;
+
+
+
 
 
     void SetupIconValues(GameObject icon, PlayerAbility ability)
@@ -58,11 +66,27 @@ public class SetupScene : MonoBehaviour
         p1Jump.keyJump = KeyCode.W;
         p2Jump.keyJump = KeyCode.UpArrow;
 
+        InstantDashAbility p1Dash = p1Player.GetComponent<InstantDashAbility>();
+        InstantDashAbility p2Dash = p2Player.GetComponent<InstantDashAbility>();
+        p1Dash.abilityKey = p1DashInput;
+        p2Dash.abilityKey = p2DashInput;
+
+        Health p1Health = p1Player.GetComponent<Health>();
+        Health p2Health = p2Player.GetComponent<Health>();
+        p1Health.HealthText = p1HealthText;
+        p2Health.HealthText = p2HealthText;
+
 
         follow.Player1 = p1Player.transform;
         follow.Player2 = p2Player.transform;
         zoom.Player1 = p1Player;
         zoom.Player2 = p2Player;
+
+        for (int i = 0; i < p1Info.abilities.Length && i < p1AbilityInputs.Length; i++)
+            p1Info.abilities[i].ability.abilityKey = p1AbilityInputs[i];
+
+        for (int i = 0; i < p2Info.abilities.Length && i < p2AbilityInputs.Length; i++)
+            p2Info.abilities[i].ability.abilityKey = p2AbilityInputs[i];
 
         foreach (CharacterAbility ability in p1Info.abilities)
         {

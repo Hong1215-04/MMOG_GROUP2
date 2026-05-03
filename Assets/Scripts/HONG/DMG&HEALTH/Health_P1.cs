@@ -5,7 +5,7 @@ using System;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI HealthText;
+    public TextMeshProUGUI HealthText;
     [SerializeField] private float BaseHealthDef = 8000f;
     //public float LoseHP = 40f;
     [SerializeField] PlayerMovement P1Movement;

@@ -842,6 +842,8 @@ MonoBehaviour:
   healthP1: {fileID: 0}
   healthP2: {fileID: 3537263010544335195}
   attack: {fileID: 5531542275539921891}
+  StateP2: {fileID: 6884135964729456069}
+  BuffMulti: 1.5
 --- !u!1 &2160244167086887395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1573,8 @@ MonoBehaviour:
   healthP1: {fileID: 0}
   healthP2: {fileID: 3537263010544335195}
   attack: {fileID: 5531542275539921891}
+  StateP2: {fileID: 6884135964729456069}
+  BuffMulti: 1.5
 --- !u!1 &5848560726511461080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1871,8 @@ MonoBehaviour:
   healthP1: {fileID: 0}
   healthP2: {fileID: 3537263010544335195}
   attack: {fileID: 5531542275539921891}
+  StateP2: {fileID: 6884135964729456069}
+  BuffMulti: 1.5
 --- !u!1 &8621043922393733636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1990,10 @@ PrefabInstance:
       propertyPath: abilityKey
       value: 259
       objectReference: {fileID: 0}
+    - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: State
+      value: 
+      objectReference: {fileID: 6884135964729456069}
     - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: AttackKey
       value: 257
@@ -2305,11 +2315,9 @@ MonoBehaviour:
   P1Jump: {fileID: 3114303408745147147}
   rb: {fileID: 2156421684614506896}
   recovertime: 2
-  layer:
-    serializedVersion: 2
-    m_Bits: 256
+  Tasedtime: 1
+  layer: 
   IsAttacker: 1
-  invincible: 0
 --- !u!114 &4135989850979203311 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5675442331457989807, guid: 359e4e01ad23c9148932e651fc007149, type: 3}

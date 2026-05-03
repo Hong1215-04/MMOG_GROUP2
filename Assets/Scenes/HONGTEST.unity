@@ -4001,6 +4001,12 @@ MonoBehaviour:
   countdownDuration: 1
   countdownHoldDelay: 0.3
   countdown: {fileID: 1927233879}
+  p1DashInput: 101
+  p2DashInput: 108
+  p1AbilityInputs: 310000003200000033000000
+  p2AbilityInputs: 010100000201000003010000
+  p1HealthText: {fileID: 930192244}
+  p2HealthText: {fileID: 278782556}
 --- !u!4 &1927233878
 Transform:
   m_ObjectHideFlags: 0
@@ -4313,10 +4319,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 208453778912981956, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
-      propertyPath: State
-      value: 
-      objectReference: {fileID: 1569863738283529502}
     - target: {fileID: 559504265764620493, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
       propertyPath: healthP2
       value: 
@@ -4386,17 +4388,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
---- !u!114 &1569863738283529502 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1274011614711803362, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
-  m_PrefabInstance: {fileID: 1569863738283529501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099979204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90866c9706bb7f4a9fa424672691a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerState
 --- !u!1001 &1922295312830264210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4611,26 +4602,11 @@ PrefabInstance:
       propertyPath: healthP1
       value: 
       objectReference: {fileID: 1099979205}
-    - target: {fileID: 5531542275539921891, guid: a1ab0d1d9a8d8574c8692d573f75c8ab, type: 3}
-      propertyPath: State
-      value: 
-      objectReference: {fileID: 6966333237309903611}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1ab0d1d9a8d8574c8692d573f75c8ab, type: 3}
---- !u!114 &6966333237309903611 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6884135964729456069, guid: a1ab0d1d9a8d8574c8692d573f75c8ab, type: 3}
-  m_PrefabInstance: {fileID: 6966333237309903610}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73718181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90866c9706bb7f4a9fa424672691a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerState
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

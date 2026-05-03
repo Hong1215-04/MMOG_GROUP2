@@ -1175,6 +1175,10 @@ PrefabInstance:
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: State
+      value: 
+      objectReference: {fileID: 1274011614711803362}
+    - target: {fileID: 4279888611830415267, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: AttackKey
       value: 104
       objectReference: {fileID: 0}
@@ -1353,6 +1357,8 @@ MonoBehaviour:
   healthP2: {fileID: 0}
   healthP1: {fileID: 3768499729623776844}
   attack: {fileID: 208453778912981956}
+  StateP1: {fileID: 1274011614711803362}
+  BuffMulti: 1.5
 --- !u!1 &824785151590151841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3671438815271729862, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
@@ -1374,6 +1380,8 @@ MonoBehaviour:
   healthP2: {fileID: 0}
   healthP1: {fileID: 3768499729623776844}
   attack: {fileID: 208453778912981956}
+  StateP1: {fileID: 1274011614711803362}
+  BuffMulti: 1.5
 --- !u!114 &1274011614711803362 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2895701652164600197, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
@@ -1428,6 +1436,8 @@ MonoBehaviour:
   healthP2: {fileID: 0}
   healthP1: {fileID: 3768499729623776844}
   attack: {fileID: 208453778912981956}
+  StateP1: {fileID: 1274011614711803362}
+  BuffMulti: 1.5
 --- !u!50 &6037719507949810103 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7659464600502238672, guid: 359e4e01ad23c9148932e651fc007149, type: 3}

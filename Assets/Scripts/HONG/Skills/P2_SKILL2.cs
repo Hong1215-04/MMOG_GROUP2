@@ -12,11 +12,13 @@ public class P2_SKILL2 : PlayerAbility
         {
             Taser taser = Instantiate(taserprefab, bulletspawnPos.position, Quaternion.identity);
             taser.ShootRight();
+            taser.player = gameObject;
         }
         else if (PlayerState.IsFacingRight == false)
         {
             Taser taser = Instantiate(taserprefab, bulletspawnPos.position, Quaternion.identity);
             taser.ShootLeft();
+            taser.player = gameObject;
         }
         ConsumeUse();
     }
