@@ -20,7 +20,6 @@ public class AbilityParticles : MonoBehaviour
     }
     void HideParticles()
     {
-        Debug.Log("A");
         StartCoroutine(ShowParticlesAfterDelay());
     }
 
