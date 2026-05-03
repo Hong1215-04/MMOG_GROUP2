@@ -29,7 +29,7 @@ public class P1_SKILL3 : PlayerAbility
         {
             dashing = false;
             CompleteUse();
-            health.not_invincible();
+            health.Not_invincible();
             P1Collison.SetActive(true);
         }
         base.Update();
@@ -42,14 +42,14 @@ public class P1_SKILL3 : PlayerAbility
             if (P1State.IsFacingRight == true)
             {
                 usedtime = Time.time;
-                health.set_invincible();
+                health.Set_invincible();
                 P1Collison.SetActive(false);
                 rb.AddForce(transform.right * DashForce, ForceMode2D.Impulse);
             }
             else if (P1State.IsFacingRight == false)
             {
                 usedtime = Time.time;
-                health.set_invincible();
+                health.Set_invincible();
                 P1Collison.SetActive(false);
                 rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
             }
