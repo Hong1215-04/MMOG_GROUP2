@@ -4,7 +4,7 @@ public class PlayerAbilityIconEffects : MonoBehaviour
 {
     [SerializeField] IconEffects icons;
     [SerializeField] bool playEffects = true;
-    [SerializeField] PlayerAbility ability;
+    public PlayerAbility ability;
 
     void Start()
     {

@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     [SerializeField] private Camera selectedcam;
-    [SerializeField] GameObject Player1;
-    [SerializeField] GameObject Player2;
+    public GameObject Player1;
+    public GameObject Player2;
     private float zoom;
     private float smoothTime = 0.25f;
     private float minzoom = 3f;

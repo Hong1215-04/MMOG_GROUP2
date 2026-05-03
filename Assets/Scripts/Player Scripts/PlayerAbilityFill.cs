@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerAbilityFill : MonoBehaviour
 {
     [SerializeField] Image uiElement;
-    [SerializeField] PlayerAbility ability;
+    public PlayerAbility ability;
 
     void Start()
     {

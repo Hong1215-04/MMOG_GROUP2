@@ -197,6 +197,12 @@ public class CharacterSelect : MonoBehaviour
     void StartMatch()
     {
         Debug.Log("Both players confirmed. Starting match!");
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        StartCoroutine(loadScene());
+    }
+
+    IEnumerator loadScene()
+    {
+        yield return new WaitForSeconds(1f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("HONGTEST");
     }
 }

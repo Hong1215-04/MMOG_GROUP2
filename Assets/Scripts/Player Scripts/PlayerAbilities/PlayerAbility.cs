@@ -11,7 +11,7 @@ public abstract class PlayerAbility : UsableBehaviour
     [SerializeField] bool autoRefill = false;
     [SerializeField] float refillDelay = 0.5f;
 
-    protected KeyCode AbilityKey => abilityKey;
+    public KeyCode AbilityKey => abilityKey;
     public event Action<bool> OnUsed;           // bool = isLastUse
     public event Action OnUseCompleted;
     public event Action<float> OnCooldownTick;   // float = seconds remaining
