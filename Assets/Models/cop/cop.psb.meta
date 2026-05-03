@@ -53,9 +53,9 @@ ScriptedImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
     normalMap: 0
     textureFormat: 0
     maxTextureSize: 0
@@ -9476,7 +9476,7 @@ ScriptedImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
-    compressionQuality: 100
+    compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -9625,7 +9625,7 @@ ScriptedImporter:
   rigPSDLayers: []
   sharedRigPSDLayers: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639134263415011920
+  platformSettingsDirtyTick: 639134382561479677
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
