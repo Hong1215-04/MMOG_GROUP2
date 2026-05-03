@@ -215,7 +215,7 @@ MonoBehaviour:
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
   StateP2: {fileID: 73718192}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!1 &73718181 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4724866351667807461, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
@@ -517,7 +517,7 @@ MonoBehaviour:
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
   StateP2: {fileID: 73718192}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!61 &157677615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   healthP2: {fileID: 73718202}
   attack: {fileID: 73718184}
   StateP2: {fileID: 73718192}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!61 &196022745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   healthP1: {fileID: 73718202}
   attack: {fileID: 1099979245}
   StateP1: {fileID: 81193406}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!1 &843133646
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   healthP1: {fileID: 73718202}
   attack: {fileID: 1099979245}
   StateP1: {fileID: 81193406}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!1001 &978741238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3829,7 +3829,7 @@ MonoBehaviour:
   healthP1: {fileID: 73718202}
   attack: {fileID: 1099979245}
   StateP1: {fileID: 81193406}
-  BuffMulti: 1.5
+  BuffMulti: 2
 --- !u!1 &1580570518
 GameObject:
   m_ObjectHideFlags: 0

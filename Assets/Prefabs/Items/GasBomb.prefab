@@ -142,8 +142,8 @@ MonoBehaviour:
   BombSprite: {fileID: 1123672150976889252}
   GasArea: {fileID: 9107764907424718005, guid: 4d0e3686373403342b64e84e9e332f9d, type: 3}
   explodetime: 1.5
-  throwForce: 10
-  torqueForce: 3
+  throwForce: 15
+  torqueForce: 5
 --- !u!61 &3917879821304139598
 BoxCollider2D:
   m_ObjectHideFlags: 0

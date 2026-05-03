@@ -27,10 +27,10 @@ public class PlayerStun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StunPlayer(3f);
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    StunPlayer(3f);
+        //}
         if (state.IsStunned) 
         {
             if (Time.time - stunnedTime > stunDuration) 
