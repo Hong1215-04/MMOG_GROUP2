@@ -6,8 +6,10 @@ public class MineStun : MonoBehaviour
     [SerializeField] float MineBlowDistance = 10f;
     [SerializeField] float MineDamage = 200f;
     [SerializeField] Landmine Mine;
+    [SerializeField] GameObject explosion;
     [SerializeField] float StunTime = 1.2f;
-    
+
+    private PlayerState State;
     private Health PlayerHealth;
     private PlayerMovement Movement;
     private PlayerJump Jump;
@@ -15,20 +17,36 @@ public class MineStun : MonoBehaviour
     public bool Activated = false;
     public bool IsInvincible;
 
+    //private void Start()
+    //{
+        
+    //}
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            State = other.GetComponentInParent<PlayerState>();
+       
             if (Activated)
             {
-                PlayerHealth = other.GetComponent<Health>();
-                
-                if (!other.GetComponent<Health>().invincible)
+                if (State.IsBlocked)
                 {
-                    Movement = other.GetComponent<PlayerMovement>();
-                    Jump = other.GetComponent<PlayerJump>();
-                    playerrb = other.GetComponent<Rigidbody2D>();
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    Mine.StopDetect();
+                    Activated = false;
+                    Mine.MineTriggered();
+                }
+                else if (State.IsBlocked == false) 
+                {
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+
+                    PlayerHealth = other.GetComponentInParent<Health>();
+
+                    Movement = other.GetComponentInParent<PlayerMovement>();
+                    Jump = other.GetComponentInParent<PlayerJump>();
+                    playerrb = other.GetComponentInParent<Rigidbody2D>();
 
                     Movement.CannotMove();
                     Jump.CannotJump();
@@ -60,18 +78,25 @@ public class MineStun : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        State = other.GetComponentInParent<PlayerState>();
+
         if (other.CompareTag("Player"))
         {
             Activated = true;
+        }
+        if (State.IsBlocked)
+        {
+            State.IsBlocked = false;
         }
     }
 
     IEnumerator RegainMove_Del()
     {
+        Mine.StopDetect();
         yield return new WaitForSeconds(StunTime);
         Movement.CanMove();
         Jump.CanJump();
-        Mine.MineTriggered();
         Activated = false;
+        Mine.MineTriggered();
     }
 }

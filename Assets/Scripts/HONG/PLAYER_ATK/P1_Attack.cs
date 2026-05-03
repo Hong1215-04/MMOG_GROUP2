@@ -18,6 +18,7 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] float ActiveFrame3 = 3.0f;
     [SerializeField] float Endingframe3 = 1.0f;
     [SerializeField] KeyCode AttackKey;
+    [SerializeField] private PlayerState State;
     //[SerializeField] PlayerMovement P1Movement;
     // (use if player atk can't move)
 
@@ -26,6 +27,7 @@ public class Player_Attack : MonoBehaviour
     bool SecondATK;
 
     float InputTime;
+    float buffhit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +43,10 @@ public class Player_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (buffhit == 0)
+        {
+            State.IsBuffed = false;
+        }
         //Debug.Log(InputTime);
 
         if (notFirstATK && !IsAttacking)
@@ -123,11 +129,16 @@ public class Player_Attack : MonoBehaviour
 
     public void hitted()
     {
+        buffhit --;
         CollisionP1ATK1.SetActive(false);
         CollisionP1ATK2.SetActive(false);
         CollisionP1ATK3.SetActive(false);
     }
 
+    public void buffed()
+    {
+        buffhit = 2;
+    }
     //COMBAT - 
     //if last hit > 1s 
     //1st hit

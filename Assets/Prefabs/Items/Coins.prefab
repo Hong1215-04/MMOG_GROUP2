@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.27, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3336582, y: 0.3336582, z: 0.3336582}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1187700506002888181, guid: a1426c677bc5ce74c9e14aa1e1585f60, type: 3}
   m_Color: {r: 0.13664329, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.6
+  m_Radius: 1
 --- !u!58 &424240594152746795
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.6
+  m_Radius: 1
 --- !u!50 &6801695495997030972
 Rigidbody2D:
   serializedVersion: 5
@@ -212,3 +212,4 @@ MonoBehaviour:
   canPickup: 1
   rb: {fileID: 6801695495997030972}
   spriteRenderer: {fileID: 4256214516006308471}
+  CoinPlusHealth: 200
