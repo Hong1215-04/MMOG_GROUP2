@@ -1254,8 +1254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa3cbb56532e5d4aa85495ea9b0b8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSlot
-  playerPrefab: {fileID: 3905989262061064357, guid: a1ab0d1d9a8d8574c8692d573f75c8ab, type: 3}
-  characterInfo: {fileID: 1115675878884736367, guid: a1ab0d1d9a8d8574c8692d573f75c8ab, type: 3}
+  playerPrefab: {fileID: 9118305194209681509, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+  characterInfo: {fileID: 1822744967362003895, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
   bigImage: {fileID: 21300000, guid: ac7e7c4fff834634399d501507d0570b, type: 3}
   previewCharacter: {fileID: 7556426719137340048, guid: be6dec29f2dfe3442a8f8a92fc052408, type: 3}
 --- !u!1 &360674786
@@ -6893,8 +6893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa3cbb56532e5d4aa85495ea9b0b8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  playerPrefab: {fileID: 8652456628765657218, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
-  characterInfo: {fileID: 4709853384659412296, guid: a449525ef1b170943a93c2306a77a8d0, type: 3}
+  playerPrefab: {fileID: 474527080059563126, guid: 246af1d304e9310498c9fa31b3bdc254, type: 3}
+  characterInfo: {fileID: 8534354550038270376, guid: 246af1d304e9310498c9fa31b3bdc254, type: 3}
   bigImage: {fileID: 21300000, guid: 88681f177c663cd448d40f5dad702e5f, type: 3}
   previewCharacter: {fileID: 2984722657370619207, guid: f9f37d0ba4fbf7c4d83a9771f44a2174, type: 3}
 --- !u!1 &1808176527

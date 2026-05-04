@@ -2817,8 +2817,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timerText: {fileID: 1580570519}
-  Timeleft: 200
+  Timeleft: 10
   lowTime: 0
+  P1DefenderWin: {fileID: 0}
+  P2AttackerWin: {fileID: 0}
+  P1Health: {fileID: 0}
+  P2Health: {fileID: 0}
 --- !u!114 &1634245866
 MonoBehaviour:
   m_ObjectHideFlags: 0
