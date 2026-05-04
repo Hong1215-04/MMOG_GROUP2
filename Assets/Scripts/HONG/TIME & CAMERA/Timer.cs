@@ -14,8 +14,6 @@ public class Timer : MonoBehaviour
     [SerializeField] Health P1Health;
     [SerializeField] Health P2Health;
 
-    private float P1HP;
-    private float P2HP;
     public Action OnTimeEntersLow, OnTimeExitsLow, OnTimeEnded;
     bool isLow = false;
 
@@ -33,6 +31,9 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        //P2Health._currentHealthDEF = P2HP;
+        //P1Health._currentHealthDEF = P1HP;
+
         if (Timeleft < lowTime && !isLow)
         {
             isLow = true;
@@ -49,7 +50,7 @@ public class Timer : MonoBehaviour
         }
         else if (Timeleft == 0)
         {
-            if (P2HP > P1HP)
+            if (P2Health.GetHealth() > P1Health.GetHealth())
             {
                 Invoke("P2Win", 3);
             }
