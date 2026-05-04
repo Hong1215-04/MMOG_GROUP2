@@ -18,7 +18,7 @@ public class PlayerState : MonoBehaviour
     //  References (set once by PlayerPhysics)
     // ─────────────────────────────────────────────
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Collider2D col;
+    public Collider2D col;
 
     // ─────────────────────────────────────────────
     //  Collision (written by PlayerPhysics)

@@ -41,7 +41,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         state = GetComponent<PlayerState>();
         state.rb = GetComponent<Rigidbody2D>();
-        state.col = GetComponent<Collider2D>();
+        
 
         state.rb.gravityScale = 0f;
         state.rb.freezeRotation = true;
