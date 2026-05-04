@@ -8,9 +8,9 @@ public class CameraZoom : MonoBehaviour
     private float zoom;
     private float smoothTime = 0.25f;
     private float minzoom = 3f;
-    private float maxzoom = 10f;
+    private float maxzoom = 15f;
     private float velocity = 0f;
-    private float maxdistance = 40f;
+    private float maxdistance = 28f;
 
     Vector2 Player1Pos;
     Vector2 Player2Pos;
