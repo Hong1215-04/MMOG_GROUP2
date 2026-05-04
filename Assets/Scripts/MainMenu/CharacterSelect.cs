@@ -126,6 +126,7 @@ public class CharacterSelect : MonoBehaviour
         p2Confirmed = true;
         player2slot.hover.GetComponent<Animator>().SetBool("Done", true);
         MatchData.SetSelections(characterSlots[p1Index], characterSlots[p2Index]);
+        MatchData.p1Name = characterSlots[p1Index].name;
         Debug.Log($"P2 confirmed: {characterSlots[p2Index].name}");
         StartMatch();
     }
@@ -203,6 +204,6 @@ public class CharacterSelect : MonoBehaviour
     IEnumerator loadScene()
     {
         yield return new WaitForSeconds(1f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("HONGTEST");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MapCamera");
     }
 }

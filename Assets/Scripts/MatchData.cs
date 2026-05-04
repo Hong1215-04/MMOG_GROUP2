@@ -8,4 +8,6 @@ public static class MatchData
         Player1Character = p1;
         Player2Character = p2;
     }
+
+    public static string p1Name;
 }

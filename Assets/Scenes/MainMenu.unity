@@ -1258,6 +1258,7 @@ MonoBehaviour:
   characterInfo: {fileID: 1822744967362003895, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
   bigImage: {fileID: 21300000, guid: ac7e7c4fff834634399d501507d0570b, type: 3}
   previewCharacter: {fileID: 7556426719137340048, guid: be6dec29f2dfe3442a8f8a92fc052408, type: 3}
+  characterName: Runner
 --- !u!1 &360674786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6898,7 @@ MonoBehaviour:
   characterInfo: {fileID: 8534354550038270376, guid: 246af1d304e9310498c9fa31b3bdc254, type: 3}
   bigImage: {fileID: 21300000, guid: 88681f177c663cd448d40f5dad702e5f, type: 3}
   previewCharacter: {fileID: 2984722657370619207, guid: f9f37d0ba4fbf7c4d83a9771f44a2174, type: 3}
+  characterName: Police
 --- !u!1 &1808176527
 GameObject:
   m_ObjectHideFlags: 0

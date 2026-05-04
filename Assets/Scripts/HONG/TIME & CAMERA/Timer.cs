@@ -11,8 +11,8 @@ public class Timer : MonoBehaviour
     [SerializeField] float lowTime;
     [SerializeField] GameObject P1DefenderWin;
     [SerializeField] GameObject P2AttackerWin;
-    [SerializeField] Health P1Health;
-    [SerializeField] Health P2Health;
+    public Health P1Health;
+    public Health P2Health;
 
     public Action OnTimeEntersLow, OnTimeExitsLow, OnTimeEnded;
     bool isLow = false;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SetupScene : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class SetupScene : MonoBehaviour
     [SerializeField] KeyCode[] p1AbilityInputs;
     [SerializeField] KeyCode[] p2AbilityInputs;
     [SerializeField] TextMeshProUGUI p1HealthText, p2HealthText;
-
-
+    [SerializeField] Image p1Image, p2Image;
+    [SerializeField] KeyCode p1AttackInput, p2AttackInput;
 
 
 
@@ -52,6 +53,21 @@ public class SetupScene : MonoBehaviour
         GameObject p1Player = Instantiate(p1.playerPrefab, spawnPoint1.position, spawnPoint1.rotation);
         GameObject p2Player = Instantiate(p2.playerPrefab, spawnPoint2.position, spawnPoint2.rotation);
 
+        Health p1Health = p1Player.GetComponent<Health>();
+        Health p2Health = p2Player.GetComponent<Health>();
+        p1Health.HealthText = p1HealthText;
+        p2Health.HealthText = p2HealthText;
+        if (MatchData.p1Name == "Police")
+        {
+            timer.P1Health = p1Health;
+            timer.P2Health = p2Health;
+        }
+        else
+        {
+            timer.P1Health = p2Health;
+            timer.P2Health = p1Health;
+        }
+
         CharacterAbilityInfo p1Info = p1Player.GetComponent<CharacterAbilityInfo>();
         CharacterAbilityInfo p2Info = p2Player.GetComponent<CharacterAbilityInfo>();
 
@@ -72,15 +88,20 @@ public class SetupScene : MonoBehaviour
         p1Dash.abilityKey = p1DashInput;
         p2Dash.abilityKey = p2DashInput;
 
-        Health p1Health = p1Player.GetComponent<Health>();
-        Health p2Health = p2Player.GetComponent<Health>();
-        p1Health.HealthText = p1HealthText;
-        p2Health.HealthText = p2HealthText;
+
 
         PlayerItemInteraction p1ItemInteraction = p1Player.GetComponent<PlayerItemInteraction>();
         PlayerItemInteraction p2ItemInteraction = p2Player.GetComponent<PlayerItemInteraction>();
         p1ItemInteraction.useItemKey = p1ItemUseButton;
         p2ItemInteraction.useItemKey = p2ItemUseButton;
+
+        Player_Attack p1Attack = p1Player.GetComponent <Player_Attack>();
+        Player_Attack p2Attack = p2Player.GetComponent<Player_Attack>();
+        p1Attack.AttackKey = p1AttackInput;
+        p2Attack.AttackKey = p2AttackInput;
+
+        p1Image.sprite = p1.bigImage;
+        p2Image.sprite = p2.bigImage;
 
 
         follow.Player1 = p1Player.transform;

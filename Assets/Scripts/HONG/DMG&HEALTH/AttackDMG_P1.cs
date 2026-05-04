@@ -16,29 +16,43 @@ public class AttackDMG : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Health[] allHealth = FindObjectsByType<Health>(FindObjectsSortMode.None);
-        foreach (Health h in allHealth)
-        {
-            if (h != healthP1)
-            {
-                healthP2 = h;
-                break;
-            }
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (healthP1 == null)
+        {
+            Health[] allHealth = FindObjectsByType<Health>(FindObjectsSortMode.None);
+            foreach (Health h in allHealth)
+            {
+                if (h != healthP2)
+                {
+                    healthP1 = h;
+                    break;
+                }
+            }
+        }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             StateP2 = other.GetComponentInParent<PlayerState>();
-            //P2ATK = other.GetComponentInParent<Player_Attack>();
+            if (healthP1 == null)
+            {
+                Health[] allHealth = FindObjectsByType<Health>(FindObjectsSortMode.None);
+                foreach (Health h in allHealth)
+                {
+                    if (h != healthP2)
+                    {
+                        healthP1 = h;
+                        break;
+                    }
+                }
+            }
+            Debug.Log("DAMAGED");
 
             if (StateP2.IsBlocked)
             {

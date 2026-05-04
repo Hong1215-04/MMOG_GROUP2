@@ -7,4 +7,5 @@ public class CharacterSlot : MonoBehaviour
     public CharacterAbilityInfo characterInfo;
     public Sprite bigImage;
     public GameObject previewCharacter;
+    public string characterName;
 }

@@ -11,7 +11,7 @@ public class Boxing : Item
     public override void DoUse()
     {
         State = player.GetComponent<PlayerState>();
-        Attack = player.GetComponent<Player_Attack>();
+        Attack = player.GetComponentInParent<Player_Attack>();
         State.IsBuffed = true;
         Affecting = true;
         BoxingRen.enabled = true;
