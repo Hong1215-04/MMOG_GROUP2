@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] Rigidbody2D rb ;
     [SerializeField] float recovertime = 2f;
     [SerializeField] float Tasedtime = 1.0f;
+    [SerializeField] Animator TasedStun;
     public Action OnDamageTaken;
     [SerializeField] String layer;
     //Vector2 lastdirection;
@@ -85,6 +86,7 @@ public class Health : MonoBehaviour
                     //StartCoroutine(BeingHit());
                     OnDamageTaken?.Invoke();
 
+                    TasedStun.SetBool("Knockdown", true);
                     P1Movement.CannotMove();
                     P1Jump.CannotJump();
 
@@ -108,16 +110,6 @@ public class Health : MonoBehaviour
                 }
             }
         }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("Taser"))
-        {
-            if (Invincible == false)
-            {
-                P1Movement.CannotMove();
-                P1Jump.CannotJump();
-                StartCoroutine(Tased());
-            }
-        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -134,6 +126,7 @@ public class Health : MonoBehaviour
                     //StartCoroutine(BeingHit());
                     OnDamageTaken?.Invoke();
 
+                    TasedStun.SetBool("Knockdown", true);
                     P1Movement.CannotMove();
                     P1Jump.CannotJump();
 
@@ -173,6 +166,7 @@ public class Health : MonoBehaviour
     IEnumerator RegainMove()
     {
         yield return new WaitForSeconds(recovertime);
+        TasedStun.SetBool("Knockdown", false);
         P1Movement.CanMove();
         P1Jump.CanJump();
         Knocked = false;
@@ -181,7 +175,11 @@ public class Health : MonoBehaviour
     IEnumerator Tased()
     {
         rb.linearVelocity = Vector2.zero;
+        TasedStun.SetBool("Stun", true);
+        TasedStun.SetBool("IsDoingSomething", true);
         yield return new WaitForSeconds(Tasedtime);
+        TasedStun.SetBool("Stun", false);
+        TasedStun.SetBool("IsDoingSomething", false);
         P1Movement.CanMove();
         P1Jump.CanJump();
         //StunEffect.StunPlayer(Tasedtime);
@@ -197,5 +195,17 @@ public class Health : MonoBehaviour
     {
         Invincible = false;
         Debug.Log("Dissapear");
+    }
+
+    public void DoTased()
+    {
+        {
+            if (Invincible == false)
+            {
+                P1Movement.CannotMove();
+                P1Jump.CannotJump();
+                StartCoroutine(Tased());
+            }
+        }
     }
 }

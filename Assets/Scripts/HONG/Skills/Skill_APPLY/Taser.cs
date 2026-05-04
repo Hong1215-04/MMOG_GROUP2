@@ -8,6 +8,7 @@ public class Taser : MonoBehaviour
     int life = 1;
     public GameObject player;
 
+    private Health P2Tasing;
     private PlayerState State;
     //float avaliabletime;
     //float flytime;
@@ -37,31 +38,30 @@ public class Taser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
-            if (other.gameObject != player)
+            State = other.gameObject.GetComponentInParent<PlayerState>();
+            P2Tasing = other.gameObject.GetComponentInParent<Health>();
+
+            if (State.IsBlocked)
             {
-                State = other.gameObject.GetComponentInParent<PlayerState>();
+                State.IsBlocked = false;
 
-                if (State.IsBlocked)
+                life--;
+                if (life <= 0)
                 {
-                    State.IsBlocked = false;
-
-                    life--;
-                    if (life <= 0)
-                    {
-                        Destroy(gameObject);
-                        return;
-                    }
+                    Destroy(gameObject);
+                    return;
                 }
-                else
+            }
+            else
+            {
+                P2Tasing.DoTased();
+                life--;
+                if (life <= 0)
                 {
-                    life--;
-                    if (life <= 0)
-                    {
-                        Destroy(gameObject);
-                        return;
-                    }
+                    Destroy(gameObject);
+                    return;
                 }
             }
         }

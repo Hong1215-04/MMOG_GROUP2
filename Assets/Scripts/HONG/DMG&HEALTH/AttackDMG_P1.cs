@@ -11,6 +11,7 @@ public class AttackDMG : MonoBehaviour
 
     private PlayerState StateP2;
     private float BuffDmg;
+    //private Player_Attack P2ATK;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +38,7 @@ public class AttackDMG : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             StateP2 = other.GetComponentInParent<PlayerState>();
+            //P2ATK = other.GetComponentInParent<Player_Attack>();
 
             if (StateP2.IsBlocked)
             {
@@ -44,6 +46,7 @@ public class AttackDMG : MonoBehaviour
             }
             else if (StateP1.IsBuffed)
             {
+                //P2ATK.StopAllAtk();
                 BuffDmg = ATKDMG * BuffMulti;
                 healthP1.LoseLifeDEF(BuffDmg);
                 healthP2.GainLifeDEF(BuffDmg);
@@ -51,6 +54,7 @@ public class AttackDMG : MonoBehaviour
             }
             else
             {
+                //P2ATK.StopAllAtk();
                 healthP1.LoseLifeDEF(ATKDMG);
                 healthP2.GainLifeDEF(ATKDMG);
                 attack.hitted();

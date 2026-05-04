@@ -39,7 +39,7 @@ public class SlowApplication : MonoBehaviour
     {
         State = other.GetComponentInParent<PlayerState>();
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             if (State.IsBlocked)
             {
@@ -60,7 +60,7 @@ public class SlowApplication : MonoBehaviour
     {
         State = other.GetComponentInParent<PlayerState>();
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             if (State.IsBlocked)
             {
@@ -81,7 +81,7 @@ public class SlowApplication : MonoBehaviour
     {
         State = other.GetComponentInParent<PlayerState>();
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player1"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             if (State.IsBlocked)
             {

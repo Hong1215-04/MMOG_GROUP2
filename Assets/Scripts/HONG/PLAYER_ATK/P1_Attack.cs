@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player_Attack : MonoBehaviour
 {
+    [SerializeField] Animator atkanim;
     [SerializeField] GameObject CollisionP1ATK1;
     [SerializeField] GameObject CollisionP1ATK2;
     [SerializeField] GameObject CollisionP1ATK3;
@@ -32,6 +33,7 @@ public class Player_Attack : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        atkanim = GetComponent<Animator>();
         CollisionP1ATK1.SetActive(false);
         CollisionP1ATK2.SetActive(false);
         CollisionP1ATK3.SetActive(false);
@@ -88,9 +90,11 @@ public class Player_Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(StartupFrame1);
         CollisionP1ATK1.SetActive(true);
+        atkanim.SetBool("Attack1", true);
         //Physics2D.SyncTransforms();
         yield return new WaitForSeconds(ActiveFrame1);
         CollisionP1ATK1.SetActive(false);
+        atkanim.SetBool("Attack1", false);
         yield return new WaitForSeconds(Endingframe1);
         IsAttacking = false;
         notFirstATK = true;
@@ -100,8 +104,10 @@ public class Player_Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(StartupFrame2);
         CollisionP1ATK2.SetActive(true);
+        atkanim.SetBool("Attack2", true);
         yield return new WaitForSeconds(ActiveFrame2);
         CollisionP1ATK2.SetActive(false);
+        atkanim.SetBool("Attack2", false);
         yield return new WaitForSeconds(Endingframe2);
         IsAttacking = false;
         SecondATK = true;
@@ -113,8 +119,10 @@ public class Player_Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(StartupFrame3);
         CollisionP1ATK3.SetActive(true);
+        atkanim.SetBool("Attack3", true);
         yield return new WaitForSeconds(ActiveFrame3);
         CollisionP1ATK3.SetActive(false);
+        atkanim.SetBool("Attack3", false);
         yield return new WaitForSeconds(Endingframe3);
         IsAttacking = false;
         SecondATK = false;
@@ -125,6 +133,12 @@ public class Player_Attack : MonoBehaviour
     public void StopAllAtk()
     {
         StopAllCoroutines();
+        CollisionP1ATK1.SetActive(false);
+        CollisionP1ATK2.SetActive(false);
+        CollisionP1ATK3.SetActive(false);
+        atkanim.SetBool("Attack3", false);
+        atkanim.SetBool("Attack2", false);
+        atkanim.SetBool("Attack1", false);
     }
 
     public void hitted()
