@@ -176,18 +176,18 @@ public class Health : MonoBehaviour
         Knocked = false;
     }
 
-    IEnumerator Tased()
-    {
-        rb.linearVelocity = Vector2.zero;
-        TasedStun.SetBool("Stun", true);
-        TasedStun.SetBool("IsDoingSomething", true);
-        yield return new WaitForSeconds(Tasedtime);
-        TasedStun.SetBool("Stun", false);
-        TasedStun.SetBool("IsDoingSomething", false);
-        P1Movement.CanMove();
-        P1Jump.CanJump();
-        //StunEffect.StunPlayer(Tasedtime);
-    }
+    //IEnumerator Tased()
+    //{
+    //    rb.linearVelocity = Vector2.zero;
+    //    TasedStun.SetBool("Stun", true);
+    //    TasedStun.SetBool("IsDoingSomething", true);
+    //    yield return new WaitForSeconds(Tasedtime);
+    //    TasedStun.SetBool("Stun", false);
+    //    TasedStun.SetBool("IsDoingSomething", false);
+    //    P1Movement.CanMove();
+    //    P1Jump.CanJump();
+    //    //StunEffect.StunPlayer(Tasedtime);
+    //}
 
     public void Set_invincible()
     {
@@ -201,17 +201,17 @@ public class Health : MonoBehaviour
         Debug.Log("Dissapear");
     }
 
-    public void DoTased()
-    {
-        {
-            if (Invincible == false)
-            {
-                P1Movement.CannotMove();
-                P1Jump.CannotJump();
-                StartCoroutine(Tased());
-            }
-        }
-    }
+    //public void DoTased()
+    //{
+    //    {
+    //        if (Invincible == false)
+    //        {
+    //            P1Movement.CannotMove();
+    //            P1Jump.CannotJump();
+    //            StartCoroutine(Tased());
+    //        }
+    //    }
+    //}
 
     public float GetHealth()
     {

@@ -26,7 +26,7 @@ public class Bubble : Item
         rb.simulated = false;
         BubbleRen.enabled = false;
         transform.SetParent(player.transform);
-        transform.localPosition = new Vector3 (0,0.62f,0);
+        transform.localPosition = new Vector3 (0,1.35f,0);
     }
 
     private void Update()

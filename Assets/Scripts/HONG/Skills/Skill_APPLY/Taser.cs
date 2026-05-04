@@ -5,10 +5,11 @@ public class Taser : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float bulletspeed = 30.0f;
+    [SerializeField] float TasedTime = 1.0f;
     int life = 1;
     public GameObject player;
 
-    private Health P2Tasing;
+    private PlayerStun P2Tasing;
     private PlayerState State;
     //float avaliabletime;
     //float flytime;
@@ -41,7 +42,8 @@ public class Taser : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player2"))
         {
             State = other.gameObject.GetComponentInParent<PlayerState>();
-            P2Tasing = other.gameObject.GetComponentInParent<Health>();
+            P2Tasing = other.gameObject.GetComponentInParent<PlayerStun>();
+
 
             if (State.IsBlocked)
             {
@@ -56,7 +58,7 @@ public class Taser : MonoBehaviour
             }
             else
             {
-                P2Tasing.DoTased();
+                P2Tasing.StunPlayer(TasedTime);
                 life--;
                 if (life <= 0)
                 {
