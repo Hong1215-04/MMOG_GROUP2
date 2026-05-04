@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerItemInteraction : MonoBehaviour
 {
     Item heldItem;
-    [SerializeField] KeyCode useItemKey = KeyCode.C;
+    public KeyCode useItemKey = KeyCode.C;
     public Action OnItemPickup;
 
     void OnTriggerEnter2D(Collider2D other)

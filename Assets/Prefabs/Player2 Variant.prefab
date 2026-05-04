@@ -2079,13 +2079,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8709232895704541487, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: abilities.Array.data[0].icon
+      value: 
+      objectReference: {fileID: 5174787290682982521, guid: 7ca63f2d390968248834144dfb277c4e, type: 3}
+    - target: {fileID: 8709232895704541487, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: abilities.Array.data[1].icon
       value: 
-      objectReference: {fileID: 294824874559501825, guid: 0c226e2f4ae36c44889b1f028601d2ce, type: 3}
+      objectReference: {fileID: 349289029354249581, guid: 9a7a0dfcb1281614097505e72b974956, type: 3}
     - target: {fileID: 8709232895704541487, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: abilities.Array.data[2].icon
       value: 
-      objectReference: {fileID: 294824874559501825, guid: 0c226e2f4ae36c44889b1f028601d2ce, type: 3}
+      objectReference: {fileID: 8380618220932024776, guid: 4e129c7bbb9c8654182a70bd8a70a9c6, type: 3}
     - target: {fileID: 8709232895704541487, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: abilities.Array.data[0].ability
       value: 

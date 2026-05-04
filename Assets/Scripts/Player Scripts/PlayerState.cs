@@ -80,6 +80,9 @@ public class PlayerState : MonoBehaviour
     public Transform FlapSlot;
     public Animator HeadAnim;
     public Transform HeadSlot;
+    public Transform GloveHolder;
+    public Transform BootHolder1;
+    public Transform BootHolder2;
 
     public Vector2 Velocity
     {

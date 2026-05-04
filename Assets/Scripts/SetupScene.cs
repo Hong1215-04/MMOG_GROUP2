@@ -20,6 +20,7 @@ public class SetupScene : MonoBehaviour
     [SerializeField] AudioSource countdown;
     private float countdownSlideSpeed;
     [SerializeField] KeyCode p1DashInput, p2DashInput;
+    [SerializeField] KeyCode p1ItemUseButton, p2ItemUseButton;
     [SerializeField] KeyCode[] p1AbilityInputs;
     [SerializeField] KeyCode[] p2AbilityInputs;
     [SerializeField] TextMeshProUGUI p1HealthText, p2HealthText;
@@ -75,6 +76,11 @@ public class SetupScene : MonoBehaviour
         Health p2Health = p2Player.GetComponent<Health>();
         p1Health.HealthText = p1HealthText;
         p2Health.HealthText = p2HealthText;
+
+        PlayerItemInteraction p1ItemInteraction = p1Player.GetComponent<PlayerItemInteraction>();
+        PlayerItemInteraction p2ItemInteraction = p2Player.GetComponent<PlayerItemInteraction>();
+        p1ItemInteraction.useItemKey = p1ItemUseButton;
+        p2ItemInteraction.useItemKey = p2ItemUseButton;
 
 
         follow.Player1 = p1Player.transform;

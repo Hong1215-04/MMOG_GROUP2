@@ -193,7 +193,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6457292849674812045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +213,4 @@ MonoBehaviour:
   rb: {fileID: 6801695495997030972}
   spriteRenderer: {fileID: 4256214516006308471}
   CoinPlusHealth: 200
+  animDuration: 0

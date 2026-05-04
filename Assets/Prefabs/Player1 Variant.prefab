@@ -1286,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_SleepingMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8709232895704541487, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
+      propertyPath: abilities.Array.data[2].icon
+      value: 
+      objectReference: {fileID: 6297373718487025108, guid: 6d4a26f35dd6e304cb1c808c4b5d2b3f, type: 3}
     - target: {fileID: 8780702989411554627, guid: 359e4e01ad23c9148932e651fc007149, type: 3}
       propertyPath: abilityKey
       value: 113

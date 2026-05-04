@@ -24,8 +24,11 @@ public class GasEffect : MonoBehaviour
 
         if (TimeGoes >= GasDuration)
         {
-            Pmovement.RemoveSpeedMultiplier(SlowSkillMultiplier);
-            Destroy(gameObject);
+            if (Pmovement != null)
+            {
+                Pmovement.RemoveSpeedMultiplier(SlowSkillMultiplier);
+                Destroy(gameObject);
+            }
         }
     }
 

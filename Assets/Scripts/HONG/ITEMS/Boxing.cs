@@ -22,8 +22,10 @@ public class Boxing : Item
     {
         rb.simulated = false;
         BoxingRen.enabled = false;
-        transform.SetParent(player.transform);
+        transform.SetParent(player.GetComponent<PlayerState>().GloveHolder);
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
     }
 
     private void Update()
