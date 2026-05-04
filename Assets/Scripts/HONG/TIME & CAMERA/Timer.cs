@@ -9,11 +9,18 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float Timeleft;
     [SerializeField] float lowTime;
+    [SerializeField] GameObject P1DefenderWin;
+    [SerializeField] GameObject P2AttackerWin;
+    [SerializeField] Health P1Health;
+    [SerializeField] Health P2Health;
+
     public Action OnTimeEntersLow, OnTimeExitsLow, OnTimeEnded;
     bool isLow = false;
 
     void Awake()
     {
+        P1DefenderWin.SetActive(false);
+        P2AttackerWin.SetActive(false);
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,6 +31,9 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        //P2Health._currentHealthDEF = P2HP;
+        //P1Health._currentHealthDEF = P1HP;
+
         if (Timeleft < lowTime && !isLow)
         {
             isLow = true;
@@ -40,7 +50,14 @@ public class Timer : MonoBehaviour
         }
         else if (Timeleft == 0)
         {
-            Invoke("ExitGame", 2);
+            if (P2Health.GetHealth() > P1Health.GetHealth())
+            {
+                Invoke("P2Win", 3);
+            }
+            else
+            {
+                Invoke("P1Win", 3);
+            }
         }
         else if (Timeleft < 0)
         {
@@ -76,5 +93,15 @@ public class Timer : MonoBehaviour
     {
         //Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void P1Win()
+    {
+        P1DefenderWin.SetActive(true);
+    }
+
+    public void P2Win()
+    {
+        P2AttackerWin.SetActive(true);
     }
 }

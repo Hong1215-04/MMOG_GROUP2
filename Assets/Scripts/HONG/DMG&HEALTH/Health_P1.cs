@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     [SerializeField] float recovertime = 2f;
     [SerializeField] float Tasedtime = 1.0f;
     [SerializeField] Animator TasedStun;
+
     public Action OnDamageTaken;
     [SerializeField] String layer;
     //Vector2 lastdirection;
@@ -210,5 +211,10 @@ public class Health : MonoBehaviour
                 StartCoroutine(Tased());
             }
         }
+    }
+
+    public float GetHealth()
+    {
+        return _currentHealthDEF;
     }
 }
