@@ -41,7 +41,10 @@ public class Health : MonoBehaviour
         //    LoseLifeDEF();
         //}
         int CurrentHealth = (int)_currentHealthDEF;
-        HealthText.text = CurrentHealth.ToString();
+        if (HealthText != null)
+        {
+            HealthText.text = CurrentHealth.ToString();
+        }
 
         if (_currentHealthDEF <= 0)
         {
