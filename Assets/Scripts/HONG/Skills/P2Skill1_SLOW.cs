@@ -17,6 +17,7 @@ public class P2Skill1_SLOW : PlayerAbility
     public override void DoUse()
     {
         StartCoroutine(DetectionOut());
+        ConsumeUse();
     }
 
     protected override bool CanPerform()
