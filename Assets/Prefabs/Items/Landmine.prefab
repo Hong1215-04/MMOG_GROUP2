@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f4740de813aa9488314ff7570efeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineStun
-  MineBlowDistance: 10
+  MineBlowDistance: 18
   MineDamage: 200
   Mine: {fileID: 4034630613559514357}
-  explosion: {fileID: 8832555657781408659, guid: 7ec3bd5ed1e360244b690825c81d410b, type: 3}
+  explosion: {fileID: 8832555657781408659, guid: 10e5db1c30e70bd4fa4889754d918a3c, type: 3}
   StunTime: 1.2
   Activated: 0
   IsInvincible: 0

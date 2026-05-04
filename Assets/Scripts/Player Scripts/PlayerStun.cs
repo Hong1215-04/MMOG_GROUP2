@@ -5,16 +5,20 @@ public class PlayerStun : MonoBehaviour
     PlayerState state;
     float stunDuration, stunnedTime;
     [SerializeField] GameObject spinningStarsGO;
+    Animator animator;
 
     private void Start()
     {
         state = GetComponent<PlayerState>();
+        animator = GetComponent<Animator>();
     }
 
     public void StunPlayer(float duration)
     {
         spinningStarsGO.SetActive(true);
         state.IsStunned = true;
+        animator.SetBool("Stun",true);
+        state.IsDoingSomething = true;
 
         float remaining = stunDuration - (Time.time - stunnedTime);
         if (duration > remaining)
@@ -45,5 +49,7 @@ public class PlayerStun : MonoBehaviour
     {
         state.IsStunned=false;
         spinningStarsGO.SetActive(false);
+        animator.SetBool("Stun", false);
+        state.IsDoingSomething = false;
     }
 }
