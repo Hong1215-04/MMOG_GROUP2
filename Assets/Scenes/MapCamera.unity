@@ -3128,6 +3128,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 67774102}
+    - target: {fileID: 2685637260411754, guid: 246af1d304e9310498c9fa31b3bdc254, type: 3}
+      propertyPath: BaseHealthDef
+      value: 6000
+      objectReference: {fileID: 0}
     - target: {fileID: 474527080059563126, guid: 246af1d304e9310498c9fa31b3bdc254, type: 3}
       propertyPath: m_Name
       value: Cop (Defender)
@@ -4885,6 +4889,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 1490617600}
+    - target: {fileID: 8070514641971109115, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: BaseHealthDef
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 8602410327721970354, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
       propertyPath: m_Size.x
       value: 1.8198142
