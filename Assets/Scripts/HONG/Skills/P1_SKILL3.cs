@@ -8,11 +8,13 @@ public class P1_SKILL3 : PlayerAbility
     [SerializeField] PlayerState P1State;
     [SerializeField] float duration = 1f;
     [SerializeField] Collider2D col;
+    [SerializeField] LayerMask GroundMask;
     //[SerializeField] GameObject P1Collison;
 
     float usedtime;
     public bool Silence;
     bool dashing;
+    bool Hitwall;
 
     //bool DashUsed = false;
 
@@ -26,6 +28,21 @@ public class P1_SKILL3 : PlayerAbility
 
     public override void Update()
     {
+        float Wide = GetComponentInParent<Collider2D>().bounds.size.x;
+        bool HitWall = Physics2D.Raycast((transform.position + new Vector3(0, 0.5f, 0)), Vector2.right, (Wide / 2) + 0.3f, GroundMask);
+        bool HitWallLeft = Physics2D.Raycast((transform.position + new Vector3 (0,0.5f,0)), Vector2.left, (Wide / 2) + 0.3f, GroundMask);
+
+        Debug.Log(HitWall);
+
+        if (HitWall || HitWallLeft)
+        {
+            dashing = false;
+            CompleteUse();
+            health.Not_invincible();
+            //P1Collison.SetActive(true);
+            col.enabled = true;
+        }
+
         if (Time.time - usedtime > duration && dashing)
         {
             dashing = false;

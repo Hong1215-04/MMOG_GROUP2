@@ -2816,6 +2816,9 @@ MonoBehaviour:
   P1State: {fileID: 7305220278738280177}
   duration: 0.8
   col: {fileID: 5432313518250313202}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 8
   Silence: 0
 --- !u!114 &6333737375323610006
 MonoBehaviour:
