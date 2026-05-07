@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   HealthText: {fileID: 0}
-  BaseHealthDef: 2000
+  BaseHealthDef: 4000
   P1Movement: {fileID: 1932292714551148289}
   P1Jump: {fileID: 1742978392313496636}
   rb: {fileID: 215739749437706583}
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   DashForce: 30
   P1State: {fileID: 7305220278738280177}
   duration: 0.8
-  P1Collison: {fileID: 0}
+  col: {fileID: 5432313518250313202}
   Silence: 0
 --- !u!114 &6333737375323610006
 MonoBehaviour:

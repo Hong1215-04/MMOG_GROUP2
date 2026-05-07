@@ -3428,7 +3428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   HealthText: {fileID: 0}
-  BaseHealthDef: 8000
+  BaseHealthDef: 6000
   P1Movement: {fileID: 7439854763682974268}
   P1Jump: {fileID: 369532507276177862}
   rb: {fileID: 2078366933787626229}
