@@ -27,7 +27,8 @@ public class Landmine : Item
         LandSprite.enabled = false;
 
         transform.SetParent(player.transform);
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(0, 1.35f, 0);
+
     }
     public void MineTriggered()
     {

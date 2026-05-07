@@ -17,6 +17,7 @@ public abstract class PlayerAbility : UsableBehaviour
     public event Action OnCooldownEnd;
     public event Action<float> OnFillChanged;    // float = 0-1 fill amount
     public event Action OnRefillComplete;
+    public event Action OnAbilityDisabled, OnAbilityEnabled;
 
     float cooldownTimer;
     float cooldownDelayTimer;
@@ -31,6 +32,16 @@ public abstract class PlayerAbility : UsableBehaviour
     float displayFill;
 
     float FillAmount => currentUses / uses;
+
+    public void InvokeDisable()
+    {
+        OnAbilityDisabled?.Invoke();
+    }
+
+    public void InvokeEnable ()
+    {
+        OnAbilityEnabled?.Invoke();
+    }
 
     protected override void Start()
     {

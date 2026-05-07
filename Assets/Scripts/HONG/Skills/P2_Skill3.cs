@@ -30,6 +30,9 @@ public class P2_Skill3 : PlayerAbility
             P1Skill1.Silence = true;
             P1Skill2.Silence = true;
             P1Skill3.Silence = true;
+            P1Skill1.InvokeDisable();
+            P1Skill2.InvokeDisable();
+            P1Skill3.InvokeDisable();  
             P1Skill2.CompleteUse();
             movement = Player1.GetComponent<PlayerMovement>();
             movement.AddSpeedMultiplier(SlowSkillMultiplier);
@@ -87,6 +90,9 @@ public class P2_Skill3 : PlayerAbility
             P1Skill1.Silence = false;
             P1Skill2.Silence = false;
             P1Skill3.Silence = false;
+            P1Skill1.InvokeEnable();
+            P1Skill2.InvokeEnable();
+            P1Skill3.InvokeEnable();
             movement.RemoveSpeedMultiplier(SlowSkillMultiplier);
         }
         base.Update();
