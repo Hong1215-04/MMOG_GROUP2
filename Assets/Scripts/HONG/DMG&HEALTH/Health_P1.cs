@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     //Vector2 lastdirection;
     private float _currentHealthDEF;
     public bool IsAttacker;
-
+    [SerializeField] AudioSource hitsound;
     bool Invincible = false;
     bool Knocked = false;
 
@@ -93,7 +93,7 @@ public class Health : MonoBehaviour
                     TasedStun.SetBool("Knockdown", true);
                     P1Movement.CannotMove();
                     P1Jump.CannotJump();
-
+                    hitsound.Play();
                     Vector2 enemyPos = other.transform.parent.position;
                     Vector2 playerPos = transform.position;
 

@@ -6,6 +6,8 @@ public class PlayerItemInteraction : MonoBehaviour
     Item heldItem;
     public KeyCode useItemKey = KeyCode.C;
     public Action OnItemPickup;
+    [SerializeField] GameObject inventorySlot;
+    [SerializeField] SpriteRenderer inventoryItemImage;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -41,6 +43,25 @@ public class PlayerItemInteraction : MonoBehaviour
         if (heldItem != null && Input.GetKeyDown(useItemKey))
         {
             heldItem.Use();
+        }
+
+        if (heldItem != null)
+        {
+            if (!inventorySlot.activeSelf)
+            {
+                inventorySlot.SetActive(true);
+            }
+            if (inventoryItemImage.sprite != heldItem.itemInventoryRender)
+            {
+                inventoryItemImage.sprite = heldItem.itemInventoryRender;
+            }
+        }
+        else
+        {
+            if (inventorySlot.activeSelf)
+            {
+                inventorySlot.SetActive(false);
+            }
         }
     }
 }

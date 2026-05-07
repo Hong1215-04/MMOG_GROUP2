@@ -7,7 +7,7 @@ public abstract class Item : UsableBehaviour
     public PlayerItemInteraction player;
     public bool canPickup = true;
     [SerializeField] protected Rigidbody2D rb;
-
+    public Sprite itemInventoryRender;
     protected void InvokeOnItemDestroyed() => OnItemDestroyed?.Invoke();
 
     protected override void OnUsesCompleted()

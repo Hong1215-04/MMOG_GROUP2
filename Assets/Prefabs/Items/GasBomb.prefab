@@ -141,6 +141,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 8042098518024583040}
+  itemInventoryRender: {fileID: 21300000, guid: 5dcf8e06687b90e44834848fa7db27f7, type: 3}
   BombSprite: {fileID: 1123672150976889252}
   GasArea: {fileID: 9107764907424718005, guid: 4d0e3686373403342b64e84e9e332f9d, type: 3}
   explodetime: 1.5

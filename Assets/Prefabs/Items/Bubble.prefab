@@ -213,6 +213,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 3231360449404367198}
+  itemInventoryRender: {fileID: 21300000, guid: e15cbc5f0ddfc3746abc9a75aacecbcb, type: 3}
   BubbleRen: {fileID: 7631167650029688151}
 --- !u!114 &1741414678980887245
 MonoBehaviour:

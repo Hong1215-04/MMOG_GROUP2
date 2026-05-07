@@ -235,6 +235,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 59515733250344352}
+  itemInventoryRender: {fileID: 21300000, guid: d097b9a04e5ba3a41bcbee829bbdcf66, type: 3}
   stun: {fileID: 437247751933246948}
   spriteRenderer: {fileID: 8415573161122412974}
 --- !u!114 &1855155716773421718

@@ -197,6 +197,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 7609162464953924594}
+  itemInventoryRender: {fileID: 21300000, guid: 01ddbf5cc0ad05c419c6a43a9763f902, type: 3}
   animator: {fileID: 2225720094020231725}
   spriteRenderer: {fileID: 2956194739024281657}
   animDuration: 1

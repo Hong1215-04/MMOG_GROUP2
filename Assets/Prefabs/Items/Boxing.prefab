@@ -213,6 +213,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 8929381497953020590}
+  itemInventoryRender: {fileID: 21300000, guid: b1b62367f65e3dc4298a4d2a1611c60c, type: 3}
   BoxingRen: {fileID: 3575848353933506808}
 --- !u!114 &8272752140834588412
 MonoBehaviour:

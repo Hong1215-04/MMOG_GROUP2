@@ -332,6 +332,7 @@ MonoBehaviour:
   player: {fileID: 0}
   canPickup: 1
   rb: {fileID: 5650934146422997742}
+  itemInventoryRender: {fileID: 21300000, guid: 4b109de7e964de545a22d7208d2770a1, type: 3}
   LandSprite: {fileID: 972726591837075535}
   MineTrigger: {fileID: 493054058580238411}
 --- !u!82 &5546894100975030368
