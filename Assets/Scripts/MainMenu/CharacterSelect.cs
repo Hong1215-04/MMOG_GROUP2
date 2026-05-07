@@ -17,6 +17,7 @@ public class CharacterSelect : MonoBehaviour
 {
     [SerializeField] CharacterSlot[] characterSlots;
     [SerializeField] PlayerSlot player1slot, player2slot;
+    [SerializeField] AudioSource switchAudio, confirmAudio;
 
     private int p1Index = 0;
     private int p2Index = 0;
@@ -51,6 +52,7 @@ public class CharacterSelect : MonoBehaviour
             int next = (p1Index + 1) % characterSlots.Length;
             if (!IsOccupiedByOther(next, p2Index))
             {
+                switchAudio.Play();
                 p1Index = next;
                 MoveHover(player1slot, characterSlots[p1Index]);
                 UpdateBigImage(player1slot, characterSlots[p1Index], ref p1SlideCoroutine);
@@ -62,6 +64,7 @@ public class CharacterSelect : MonoBehaviour
             int next = (p1Index - 1 + characterSlots.Length) % characterSlots.Length;
             if (!IsOccupiedByOther(next, p2Index))
             {
+                switchAudio.Play();
                 p1Index = next;
                 MoveHover(player1slot, characterSlots[p1Index]);
                 UpdateBigImage(player1slot, characterSlots[p1Index], ref p1SlideCoroutine);
@@ -79,6 +82,7 @@ public class CharacterSelect : MonoBehaviour
             int next = (p2Index + 1) % characterSlots.Length;
             if (!IsOccupiedByOther(next, p1Index))
             {
+                switchAudio.Play();
                 p2Index = next;
                 MoveHover(player2slot, characterSlots[p2Index]);
                 UpdateBigImage(player2slot, characterSlots[p2Index], ref p2SlideCoroutine);
@@ -90,6 +94,7 @@ public class CharacterSelect : MonoBehaviour
             int next = (p2Index - 1 + characterSlots.Length) % characterSlots.Length;
             if (!IsOccupiedByOther(next, p1Index))
             {
+                switchAudio.Play();
                 p2Index = next;
                 MoveHover(player2slot, characterSlots[p2Index]);
                 UpdateBigImage(player2slot, characterSlots[p2Index], ref p2SlideCoroutine);
@@ -107,6 +112,7 @@ public class CharacterSelect : MonoBehaviour
 
     void ConfirmP1()
     {
+        confirmAudio.Play();
         p1Confirmed = true;
 
         p2Index = p2Index == p1Index
@@ -123,6 +129,7 @@ public class CharacterSelect : MonoBehaviour
 
     void ConfirmP2()
     {
+        confirmAudio.Play();
         p2Confirmed = true;
         player2slot.hover.GetComponent<Animator>().SetBool("Done", true);
         MatchData.SetSelections(characterSlots[p1Index], characterSlots[p2Index]);
