@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     // References to UI panels
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
+    public GameObject characterSelectPanel;
 
     void Start()
     {
@@ -22,8 +23,9 @@ public class MainMenu : MonoBehaviour
 
     void StartGame()
     {
-        // Assuming the main game scene is called "GameScene"
-        SceneManager.LoadScene("GameScene");
+        // Switch to character selection panel
+        mainMenuPanel.SetActive(false);
+        characterSelectPanel.SetActive(true);
     }
 
     void OpenSettings()
