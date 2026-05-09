@@ -2926,7 +2926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
   keyJump: 273
-  jumpForce: 9
+  jumpForce: 9.5
   coyoteTime: 0.12
   jumpBufferTime: 0.15
   maxJumps: 1
@@ -3063,16 +3063,16 @@ MonoBehaviour:
   CollisionP1ATK1: {fileID: 5755095566649312906}
   CollisionP1ATK2: {fileID: 4711056821736703294}
   CollisionP1ATK3: {fileID: 5769672112787314086}
-  InputFrameATK2: 0.8
-  StartupFrame1: 0.15
+  InputFrameATK2: 0.7
+  StartupFrame1: 0.12
   ActiveFrame1: 0.75
-  Endingframe1: 0.2
-  StartupFrame2: 0.28
+  Endingframe1: 0.15
+  StartupFrame2: 0.2
   ActiveFrame2: 1
-  Endingframe2: 0.35
-  StartupFrame3: 0.4
+  Endingframe2: 0.27
+  StartupFrame3: 0.27
   ActiveFrame3: 1.2
-  Endingframe3: 0.5
+  Endingframe3: 0.33
   AttackKey: 257
   State: {fileID: 7305220278738280177}
 --- !u!61 &8424533094060369114
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   P1Movement: {fileID: 1932292714551148289}
   P1Jump: {fileID: 1742978392313496636}
   rb: {fileID: 215739749437706583}
-  recovertime: 1
+  recovertime: 0.85
   Tasedtime: 2
   TasedStun: {fileID: 1877390855177585173}
   layer: P1_Damage
@@ -3159,7 +3159,7 @@ MonoBehaviour:
   uses: 1
   useThreshold: 0.001
   abilityKey: 262
-  cooldown: 5
+  cooldown: 4.8
   fillDropSpeed: 5
   autoRefill: 0
   refillDelay: 0.5
@@ -3188,11 +3188,11 @@ MonoBehaviour:
   uses: 1
   useThreshold: 0.001
   abilityKey: 261
-  cooldown: 8
+  cooldown: 6.5
   fillDropSpeed: 5
   autoRefill: 0
   refillDelay: 0.5
-  jumpMultiplyer: 2.5
+  jumpMultiplyer: 2.2
   playerjump: {fileID: 1742978392313496636}
   Silence: 0
 --- !u!114 &8422729528231764228
