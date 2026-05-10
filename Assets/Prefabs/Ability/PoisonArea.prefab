@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8ad371e6c16f14e9faca8e6cea3a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GasEffect
-  GasDuration: 4
-  GasDamage: 2
-  SlowSkillMultiplier: 0.1
+  GasDuration: 5
+  GasDamage: 2.5
+  SlowSkillMultiplier: 0.35
 --- !u!82 &-3627589979891193506
 AudioSource:
   m_ObjectHideFlags: 0

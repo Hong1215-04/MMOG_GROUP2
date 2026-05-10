@@ -6086,6 +6086,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1023942338130901065, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: cooldown
+      value: 4.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1603528982644766232, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
       propertyPath: healthP1
       value: 
@@ -6098,6 +6102,14 @@ PrefabInstance:
       propertyPath: healthP1
       value: 
       objectReference: {fileID: 1008838526}
+    - target: {fileID: 6333737375323610006, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: cooldown
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333737375323610006, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: jumpMultiplyer
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7945092564573288454, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.48
@@ -6138,10 +6150,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: Endingframe1
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: Endingframe2
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: Endingframe3
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: StartupFrame1
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: StartupFrame2
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997098149608524622, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: StartupFrame3
+      value: 0.27
+      objectReference: {fileID: 0}
     - target: {fileID: 8070514641971109115, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 1490617600}
+    - target: {fileID: 8070514641971109115, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
+      propertyPath: recovertime
+      value: 0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 9118305194209681509, guid: 825f4a547bc52c44ca844c99f632b580, type: 3}
       propertyPath: m_Name
       value: Runner (Attacker)

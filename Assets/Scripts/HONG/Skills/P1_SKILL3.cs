@@ -29,8 +29,8 @@ public class P1_SKILL3 : PlayerAbility
     public override void Update()
     {
         float Wide = GetComponentInParent<Collider2D>().bounds.size.x;
-        bool HitWall = Physics2D.Raycast((transform.position + new Vector3(0, 0.5f, 0)), Vector2.right, (Wide / 2) + 0.3f, GroundMask);
-        bool HitWallLeft = Physics2D.Raycast((transform.position + new Vector3 (0,0.5f,0)), Vector2.left, (Wide / 2) + 0.3f, GroundMask);
+        bool HitWall = Physics2D.Raycast((transform.position + new Vector3(0, 0.5f, 0)), Vector2.right, (Wide / 2) + 0.4f, GroundMask);
+        bool HitWallLeft = Physics2D.Raycast((transform.position + new Vector3 (0,0.5f,0)), Vector2.left, (Wide / 2) + 0.4f, GroundMask);
 
         Debug.Log(HitWall);
 
@@ -72,6 +72,7 @@ public class P1_SKILL3 : PlayerAbility
                 health.Set_invincible();
                 //P1Collison.SetActive(false);
                 col.enabled = false;
+
                 rb.AddForce(-transform.right * DashForce, ForceMode2D.Impulse);
             }
             ConsumeUse();
