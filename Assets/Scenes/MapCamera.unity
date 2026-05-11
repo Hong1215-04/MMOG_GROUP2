@@ -6037,10 +6037,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timerText: {fileID: 1997587500}
-  Timeleft: 180
+  Timeleft: 3
   lowTime: 0
-  P1DefenderWin: {fileID: 426383831}
-  P2AttackerWin: {fileID: 1821238450}
+  P1DefenderWin: {fileID: 1821238450}
+  P2AttackerWin: {fileID: 426383831}
   P1Health: {fileID: 1008838526}
   P2Health: {fileID: 730937452}
 --- !u!1 &2082249212
