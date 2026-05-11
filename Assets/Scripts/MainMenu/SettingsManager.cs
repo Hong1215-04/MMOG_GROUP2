@@ -40,26 +40,34 @@ public class SettingsManager : MonoBehaviour
 
     void Start()
     {
-        // Clear old audio settings (set to 0.6 if they were at 1.0)
         InitializeAudioDefaults();
-
-        // Auto-find components if not assigned
         AutoFindComponents();
-
-        // Populate resolution dropdown
         PopulateResolutionDropdown();
-
-        // Load saved settings
         LoadSettings();
 
-        // Bind button events
         if (resetButton != null)
             resetButton.onClick.AddListener(ResetToDefaults);
         if (applyButton != null)
             applyButton.onClick.AddListener(ApplySettings);
         if (backButton != null)
             backButton.onClick.AddListener(Back);
-        // Controls button can be bound later if needed
+
+        if (resetButton != null)
+        resetButton.onClick.AddListener(() => SFXManager.Instance?.PlayButtonClick());
+        if (applyButton != null)
+            applyButton.onClick.AddListener(() => SFXManager.Instance?.PlayButtonClick());
+        if (backButton != null)
+            backButton.onClick.AddListener(() => SFXManager.Instance?.PlayButtonClick());
+
+        if (masterVolumeSlider != null)
+            masterVolumeSlider.onValueChanged.AddListener(delegate { ApplyAudioSettings(); });
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.onValueChanged.AddListener(delegate { ApplyAudioSettings(); });
+        if (sfxVolumeSlider != null)
+            sfxVolumeSlider.onValueChanged.AddListener(delegate { ApplyAudioSettings(); });
+
+        if (resolutionDropdown != null)
+            resolutionDropdown.onValueChanged.AddListener(delegate { ApplyGraphicsSettings(); });
     }
 
     void InitializeAudioDefaults()
@@ -166,42 +174,39 @@ public class SettingsManager : MonoBehaviour
 
     void PopulateResolutionDropdown()
     {
-        if (resolutionDropdown == null)
-        {
-            Debug.LogError("Resolution Dropdown (TMP_Dropdown) not found! Make sure it exists in the scene.");
-            return;
-        }
+        if (resolutionDropdown == null) return;
 
         resolutions.Clear();
         resolutionDropdown.ClearOptions();
 
         Resolution[] availableResolutions = Screen.resolutions;
         List<string> options = new List<string>();
+        HashSet<string> seen = new HashSet<string>();
 
         int currentResolutionIndex = 0;
-        // Find default resolution (1920x1080 if available, otherwise current)
+
         for (int i = 0; i < availableResolutions.Length; i++)
         {
             Resolution res = availableResolutions[i];
+            string key = res.width + "x" + res.height;
+
+            if (seen.Contains(key)) continue; 
+            seen.Add(key);
+
             string option = res.width + " x " + res.height;
             options.Add(option);
             resolutions.Add(res);
 
-            // Set default to 1920x1080
             if (res.width == 1920 && res.height == 1080)
-            {
-                currentResolutionIndex = i;
-            }
-            // If 1920x1080 not found, use current resolution
-            else if (res.width == Screen.currentResolution.width && res.height == Screen.currentResolution.height && currentResolutionIndex == 0)
-            {
-                currentResolutionIndex = i;
-            }
+                currentResolutionIndex = resolutions.Count - 1;
+            else if (res.width == Screen.currentResolution.width && 
+                    res.height == Screen.currentResolution.height && 
+                    currentResolutionIndex == 0)
+                currentResolutionIndex = resolutions.Count - 1;
         }
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
-        // TMP_Dropdown doesn't have RefreshShownValue, this is only for UI.Dropdown
     }
 
     void LoadSettings()
@@ -262,22 +267,22 @@ public class SettingsManager : MonoBehaviour
 
     void ApplyAudioSettings()
     {
-        // Set audio volumes using AudioMixer
         if (audioMixer != null)
         {
             float masterVol = masterVolumeSlider != null ? masterVolumeSlider.value : 1f;
-            float musicVol = musicVolumeSlider != null ? musicVolumeSlider.value : 1f;
-            float sfxVol = sfxVolumeSlider != null ? sfxVolumeSlider.value : 1f;
+            float musicVol  = musicVolumeSlider  != null ? musicVolumeSlider.value  : 1f;
+            float sfxVol    = sfxVolumeSlider    != null ? sfxVolumeSlider.value    : 1f;
 
             audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(masterVol, 0.0001f)) * 20);
-            audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(musicVol, 0.0001f)) * 20);
-            audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(sfxVol, 0.0001f)) * 20);
+            audioMixer.SetFloat("MusicVolume",  Mathf.Log10(Mathf.Max(musicVol,  0.0001f)) * 20);
+            audioMixer.SetFloat("SFXVolume",    Mathf.Log10(Mathf.Max(sfxVol,    0.0001f)) * 20);
         }
         else
         {
-            Debug.LogWarning("AudioMixer not assigned. Assign it in Inspector for proper volume control.");
+
             if (masterVolumeSlider != null)
                 AudioListener.volume = masterVolumeSlider.value;
+            Debug.LogWarning("AudioMixer not assigned! Falling back to AudioListener volume control, which will affect all audio globally.");
         }
     }
 

@@ -23,27 +23,32 @@ public class MainMenu : MonoBehaviour
 
     void StartGame()
     {
-        // Switch to character selection panel
+        SFXManager.Instance?.PlayButtonClick();
         mainMenuPanel.SetActive(false);
         characterSelectPanel.SetActive(true);
+        BGMManager.Instance?.PlayCharacterSelectBGM();
     }
+
 
     void OpenSettings()
     {
-        // Switch to settings panel
+        SFXManager.Instance?.PlayButtonClick();
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        // Switch back to main menu panel from settings
+        SFXManager.Instance?.PlayButtonClick();
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+
+        BGMManager.Instance?.PlayMenuBGM();
     }
 
     void QuitGame()
     {
+        SFXManager.Instance?.PlayButtonClick();
         Debug.Log("Quit Game");
         Application.Quit();
 

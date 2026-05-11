@@ -29,6 +29,8 @@ public class CharacterSelect : MonoBehaviour
 
     void Start()
     {
+        BGMManager.Instance?.PlayCharacterSelectBGM();
+        
         SetHoverVisible(player1slot, true);
         SetHoverVisible(player2slot, false);
 
@@ -135,6 +137,9 @@ public class CharacterSelect : MonoBehaviour
         MatchData.SetSelections(characterSlots[p1Index], characterSlots[p2Index]);
         MatchData.p1Name = characterSlots[p1Index].name;
         Debug.Log($"P2 confirmed: {characterSlots[p2Index].name}");
+
+        BGMManager.Instance?.PlayInGameBGM();
+        
         StartMatch();
     }
     void SpawnPreview(PlayerSlot playerSlot, CharacterSlot characterSlot, bool isPlayer2 = false)
