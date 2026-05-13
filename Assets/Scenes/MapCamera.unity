@@ -4201,7 +4201,6 @@ MonoBehaviour:
   - {fileID: 9090038408395481464, guid: 7383d1f1b3d6637408f5e21b6463eb32, type: 3}
   - {fileID: 3808052647715773003, guid: fcbbc73de2dd02642a0710caa41af780, type: 3}
   - {fileID: 5204056153024751336, guid: 39ae47950b3311b49ac82fb429d4d430, type: 3}
-  - {fileID: 7270578156324458667, guid: 8625a7f0d26df354e9576c2cf313db29, type: 3}
   - {fileID: 563265157192640404, guid: 33a8311f4b5bba84a8090fad5104a847, type: 3}
   maxItemsInMap: 2
   spawnChancePerIntervalPercentage: 10
@@ -6037,7 +6036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timerText: {fileID: 1997587500}
-  Timeleft: 3
+  Timeleft: 180
   lowTime: 0
   P1DefenderWin: {fileID: 1821238450}
   P2AttackerWin: {fileID: 426383831}
